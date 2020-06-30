@@ -1,0 +1,180 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>BasicKObservableSet - kProperties</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kProperties</a>&nbsp;/&nbsp;<a href="../index.html">de.kotlinBerlin.kProperties.collection</a>&nbsp;/&nbsp;<a href="./index.html">BasicKObservableSet</a><br/>
+<br/>
+<h1>BasicKObservableSet</h1>
+<code><span class="keyword">class </span><span class="identifier">BasicKObservableSet</span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-k-observable-set/index.html"><span class="identifier">KObservableSet</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><span class="identifier">MutableSet</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code>
+<p>Basic implementation of the <a href="../-k-observable-set/index.html">KObservableSet</a> interface.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Basic implementation of the <a href="../-k-observable-set/index.html">KObservableSet</a> interface.</p>
+<code><span class="identifier">BasicKObservableSet</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.BasicKObservableSet$<init>(kotlin.collections.MutableSet((de.kotlinBerlin.kProperties.collection.BasicKObservableSet.E)))/wrapped">wrapped</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><span class="identifier">MutableSet</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="add.html">add</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.BasicKObservableSet$add(de.kotlinBerlin.kProperties.collection.BasicKObservableSet.E)/element">element</span><span class="symbol">:</span>&nbsp;<span class="identifier">E</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="add-all.html">addAll</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addAll</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.BasicKObservableSet$addAll(kotlin.collections.Collection((de.kotlinBerlin.kProperties.collection.BasicKObservableSet.E)))/elements">elements</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="add-listener.html">addListener</a></h4>
+</td>
+<td>
+<p>Adds an <a href="../-k-set-listener/index.html">KSetListener</a> which will be notified whenever elements are added to or removed from the
+<a href="../-k-observable-set/index.html">KObservableSet</a>. If the same listener is added more than
+once, then it will be notified more than once.</p>
+<code><span class="keyword">fun </span><span class="identifier">addListener</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.BasicKObservableSet$addListener(de.kotlinBerlin.kProperties.collection.KSetListener((de.kotlinBerlin.kProperties.collection.BasicKObservableSet.E)))/aListener">aListener</span><span class="symbol">:</span>&nbsp;<a href="../-k-set-listener/index.html"><span class="identifier">KSetListener</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Adds an <a href="../-k-collection-listener/index.html">KCollectionListener</a> which will be notified whenever elements are added to
+or removed from the <a href="../-k-observable-collection/index.html">KObservableCollection</a>. If the same listener is added more than
+once, then it will be notified more than once.</p>
+<code><span class="keyword">fun </span><span class="identifier">addListener</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.BasicKObservableSet$addListener(de.kotlinBerlin.kProperties.collection.KCollectionListener((de.kotlinBerlin.kProperties.collection.BasicKObservableSet.E)))/aListener">aListener</span><span class="symbol">:</span>&nbsp;<a href="../-k-collection-listener/index.html"><span class="identifier">KCollectionListener</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="clear.html">clear</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">clear</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="iterator.html">iterator</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">iterator</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-iterator/index.html"><span class="identifier">MutableIterator</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="remove.html">remove</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">remove</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.BasicKObservableSet$remove(de.kotlinBerlin.kProperties.collection.BasicKObservableSet.E)/element">element</span><span class="symbol">:</span>&nbsp;<span class="identifier">E</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="remove-all.html">removeAll</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">removeAll</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.BasicKObservableSet$removeAll(kotlin.collections.Collection((de.kotlinBerlin.kProperties.collection.BasicKObservableSet.E)))/elements">elements</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="remove-listener.html">removeListener</a></h4>
+</td>
+<td>
+<p>Removes the given listener from the list of listeners, that are notified
+whenever elements are added to or removed from the <a href="../-k-observable-set/index.html">KObservableSet</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">removeListener</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.BasicKObservableSet$removeListener(de.kotlinBerlin.kProperties.collection.KSetListener((de.kotlinBerlin.kProperties.collection.BasicKObservableSet.E)))/aListener">aListener</span><span class="symbol">:</span>&nbsp;<a href="../-k-set-listener/index.html"><span class="identifier">KSetListener</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Removes the given listener from the list of listeners, that are notified
+whenever elements are added to or removed from the <a href="../-k-observable-collection/index.html">KObservableCollection</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">removeListener</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.BasicKObservableSet$removeListener(de.kotlinBerlin.kProperties.collection.KCollectionListener((de.kotlinBerlin.kProperties.collection.BasicKObservableSet.E)))/aListener">aListener</span><span class="symbol">:</span>&nbsp;<a href="../-k-collection-listener/index.html"><span class="identifier">KCollectionListener</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="retain-all.html">retainAll</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">retainAll</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.BasicKObservableSet$retainAll(kotlin.collections.Collection((de.kotlinBerlin.kProperties.collection.BasicKObservableSet.E)))/elements">elements</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../observe-add.html">observeAdd</a></h4>
+</td>
+<td>
+<p>Creates a new <a href="../-k-collection-listener/index.html">KCollectionListener</a> instance, that calls <a href="../observe-add.html#de.kotlinBerlin.kProperties.collection$observeAdd(de.kotlinBerlin.kProperties.collection.KObservableCollection((de.kotlinBerlin.kProperties.collection.observeAdd.E)), kotlin.Function2((de.kotlinBerlin.kProperties.collection.KObservableCollection((de.kotlinBerlin.kProperties.collection.observeAdd.E)), kotlin.collections.Collection(()), kotlin.Unit)))/aCallback">aCallback</a> whenever the <a href="../-k-collection-listener/on-add.html">KCollectionListener.onAdd</a> method is called.
+The new listener is automatically added to this <a href="../-k-observable-collection/index.html">KObservableCollection</a> instance and then returned.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <a href="../-k-observable-collection/index.html"><span class="identifier">KObservableCollection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">observeAdd</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection$observeAdd(de.kotlinBerlin.kProperties.collection.KObservableCollection((de.kotlinBerlin.kProperties.collection.observeAdd.E)), kotlin.Function2((de.kotlinBerlin.kProperties.collection.KObservableCollection((de.kotlinBerlin.kProperties.collection.observeAdd.E)), kotlin.collections.Collection(()), kotlin.Unit)))/aCallback">aCallback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-k-observable-collection/index.html"><span class="identifier">KObservableCollection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-k-collection-listener/index.html"><span class="identifier">KCollectionListener</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../observe-remove.html">observeRemove</a></h4>
+</td>
+<td>
+<p>Creates a new <a href="../-k-collection-listener/index.html">KCollectionListener</a> instance, that calls <a href="../observe-remove.html#de.kotlinBerlin.kProperties.collection$observeRemove(de.kotlinBerlin.kProperties.collection.KObservableCollection((de.kotlinBerlin.kProperties.collection.observeRemove.E)), kotlin.Function2((de.kotlinBerlin.kProperties.collection.KObservableCollection((de.kotlinBerlin.kProperties.collection.observeRemove.E)), kotlin.collections.Collection(()), kotlin.Unit)))/aCallback">aCallback</a> whenever the <a href="../-k-collection-listener/on-remove.html">KCollectionListener.onRemove</a> method is called.
+The new listener is automatically added to this <a href="../-k-observable-collection/index.html">KObservableCollection</a> instance and then returned.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <a href="../-k-observable-collection/index.html"><span class="identifier">KObservableCollection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">observeRemove</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection$observeRemove(de.kotlinBerlin.kProperties.collection.KObservableCollection((de.kotlinBerlin.kProperties.collection.observeRemove.E)), kotlin.Function2((de.kotlinBerlin.kProperties.collection.KObservableCollection((de.kotlinBerlin.kProperties.collection.observeRemove.E)), kotlin.collections.Collection(()), kotlin.Unit)))/aCallback">aCallback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-k-observable-collection/index.html"><span class="identifier">KObservableCollection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-k-collection-listener/index.html"><span class="identifier">KCollectionListener</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../observe-set-add.html">observeSetAdd</a></h4>
+</td>
+<td>
+<p>Creates a new <a href="../-k-set-listener/index.html">KSetListener</a> instance, that calls <a href="../observe-set-add.html#de.kotlinBerlin.kProperties.collection$observeSetAdd(de.kotlinBerlin.kProperties.collection.KObservableSet((de.kotlinBerlin.kProperties.collection.observeSetAdd.E)), kotlin.Function2((de.kotlinBerlin.kProperties.collection.KObservableSet((de.kotlinBerlin.kProperties.collection.observeSetAdd.E)), kotlin.collections.Collection(()), kotlin.Unit)))/aCallback">aCallback</a> whenever the <a href="../-k-set-listener/on-add.html">KSetListener.onAdd</a> method is called.
+The new listener is automatically added to this <a href="../-k-observable-set/index.html">KObservableSet</a> instance and then returned.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <a href="../-k-observable-set/index.html"><span class="identifier">KObservableSet</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">observeSetAdd</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection$observeSetAdd(de.kotlinBerlin.kProperties.collection.KObservableSet((de.kotlinBerlin.kProperties.collection.observeSetAdd.E)), kotlin.Function2((de.kotlinBerlin.kProperties.collection.KObservableSet((de.kotlinBerlin.kProperties.collection.observeSetAdd.E)), kotlin.collections.Collection(()), kotlin.Unit)))/aCallback">aCallback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-k-observable-set/index.html"><span class="identifier">KObservableSet</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-k-set-listener/index.html"><span class="identifier">KSetListener</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../observe-set-remove.html">observeSetRemove</a></h4>
+</td>
+<td>
+<p>Creates a new <a href="../-k-set-listener/index.html">KSetListener</a> instance, that calls <a href="../observe-set-remove.html#de.kotlinBerlin.kProperties.collection$observeSetRemove(de.kotlinBerlin.kProperties.collection.KObservableSet((de.kotlinBerlin.kProperties.collection.observeSetRemove.E)), kotlin.Function2((de.kotlinBerlin.kProperties.collection.KObservableSet((de.kotlinBerlin.kProperties.collection.observeSetRemove.E)), kotlin.collections.Collection(()), kotlin.Unit)))/aCallback">aCallback</a> whenever the <a href="../-k-set-listener/on-remove.html">KSetListener.onRemove</a> method is called.
+The new listener is automatically added to this <a href="../-k-observable-set/index.html">KObservableSet</a> instance and then returned.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <a href="../-k-observable-set/index.html"><span class="identifier">KObservableSet</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">observeSetRemove</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection$observeSetRemove(de.kotlinBerlin.kProperties.collection.KObservableSet((de.kotlinBerlin.kProperties.collection.observeSetRemove.E)), kotlin.Function2((de.kotlinBerlin.kProperties.collection.KObservableSet((de.kotlinBerlin.kProperties.collection.observeSetRemove.E)), kotlin.collections.Collection(()), kotlin.Unit)))/aCallback">aCallback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-k-observable-set/index.html"><span class="identifier">KObservableSet</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-k-set-listener/index.html"><span class="identifier">KSetListener</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../simple-observe-add.html">simpleObserveAdd</a></h4>
+</td>
+<td>
+<p>Same as <a href="../observe-add.html">observeAdd</a>. Use this method if you do not need the <a href="../-k-observable-collection/index.html">KObservableCollection</a> in the callback.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <a href="../-k-observable-collection/index.html"><span class="identifier">KObservableCollection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">simpleObserveAdd</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection$simpleObserveAdd(de.kotlinBerlin.kProperties.collection.KObservableCollection((de.kotlinBerlin.kProperties.collection.simpleObserveAdd.E)), kotlin.Function1((kotlin.collections.Collection((de.kotlinBerlin.kProperties.collection.simpleObserveAdd.E)), kotlin.Unit)))/aCallback">aCallback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-k-collection-listener/index.html"><span class="identifier">KCollectionListener</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../simple-observe-remove.html">simpleObserveRemove</a></h4>
+</td>
+<td>
+<p>Same as <a href="../observe-remove.html">observeRemove</a>. Use this method if you do not need the <a href="../-k-observable-collection/index.html">KObservableCollection</a> in the callback.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <a href="../-k-observable-collection/index.html"><span class="identifier">KObservableCollection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">simpleObserveRemove</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection$simpleObserveRemove(de.kotlinBerlin.kProperties.collection.KObservableCollection((de.kotlinBerlin.kProperties.collection.simpleObserveRemove.E)), kotlin.Function1((kotlin.collections.Collection((de.kotlinBerlin.kProperties.collection.simpleObserveRemove.E)), kotlin.Unit)))/aCallback">aCallback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-k-collection-listener/index.html"><span class="identifier">KCollectionListener</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../simple-observe-set-add.html">simpleObserveSetAdd</a></h4>
+</td>
+<td>
+<p>Same as <a href="../observe-set-add.html">observeSetAdd</a>. Use this method if you do not need the <a href="../-k-observable-set/index.html">KObservableSet</a> in the callback.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <a href="../-k-observable-set/index.html"><span class="identifier">KObservableSet</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">simpleObserveSetAdd</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection$simpleObserveSetAdd(de.kotlinBerlin.kProperties.collection.KObservableSet((de.kotlinBerlin.kProperties.collection.simpleObserveSetAdd.E)), kotlin.Function1((kotlin.collections.Collection((de.kotlinBerlin.kProperties.collection.simpleObserveSetAdd.E)), kotlin.Unit)))/aCallback">aCallback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-k-set-listener/index.html"><span class="identifier">KSetListener</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../simple-observe-set-remove.html">simpleObserveSetRemove</a></h4>
+</td>
+<td>
+<p>Same as <a href="../observe-set-remove.html">observeSetRemove</a>. Use this method if you do not need the <a href="../-k-observable-set/index.html">KObservableSet</a> in the callback.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <a href="../-k-observable-set/index.html"><span class="identifier">KObservableSet</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">simpleObserveSetRemove</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection$simpleObserveSetRemove(de.kotlinBerlin.kProperties.collection.KObservableSet((de.kotlinBerlin.kProperties.collection.simpleObserveSetRemove.E)), kotlin.Function1((kotlin.collections.Collection((de.kotlinBerlin.kProperties.collection.simpleObserveSetRemove.E)), kotlin.Unit)))/aCallback">aCallback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-k-set-listener/index.html"><span class="identifier">KSetListener</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

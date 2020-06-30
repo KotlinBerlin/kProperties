@@ -1,0 +1,68 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>WeakKCollectionListener - kProperties</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kProperties</a>&nbsp;/&nbsp;<a href="../index.html">de.kotlinBerlin.kProperties.collection</a>&nbsp;/&nbsp;<a href="./index.html">WeakKCollectionListener</a><br/>
+<br/>
+<h1>WeakKCollectionListener</h1>
+<code><span class="keyword">class </span><span class="identifier">WeakKCollectionListener</span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-k-collection-listener/index.html"><span class="identifier">KCollectionListener</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code>
+<p>A <a href="./index.html">WeakKCollectionListener</a> can be used if an <a href="../-k-observable-collection/index.html">KObservableCollection</a>
+should only maintain a weak reference to the listener. This helps to avoid
+memory leaks that can occur if observers are not unregistered from observed
+objects after use.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>A <a href="./index.html">WeakKCollectionListener</a> can be used if an <a href="../-k-observable-collection/index.html">KObservableCollection</a>
+should only maintain a weak reference to the listener. This helps to avoid
+memory leaks that can occur if observers are not unregistered from observed
+objects after use.</p>
+<code><span class="identifier">WeakKCollectionListener</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.WeakKCollectionListener$<init>(de.kotlinBerlin.kProperties.collection.KCollectionListener((de.kotlinBerlin.kProperties.collection.WeakKCollectionListener.E)))/aListener">aListener</span><span class="symbol">:</span>&nbsp;<a href="../-k-collection-listener/index.html"><span class="identifier">KCollectionListener</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="equals.html">equals</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">equals</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.WeakKCollectionListener$equals(kotlin.Any)/other">other</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="hash-code.html">hashCode</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">hashCode</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-add.html">onAdd</a></h4>
+</td>
+<td>
+<p>This method gets called whenever elements are added to the <a href="../-k-observable-collection/index.html">KObservableCollection</a></p>
+<code><span class="keyword">fun </span><span class="identifier">onAdd</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.WeakKCollectionListener$onAdd(de.kotlinBerlin.kProperties.collection.KObservableCollection((de.kotlinBerlin.kProperties.collection.WeakKCollectionListener.E)), kotlin.collections.Collection((de.kotlinBerlin.kProperties.collection.WeakKCollectionListener.E)))/aCollection">aCollection</span><span class="symbol">:</span>&nbsp;<a href="../-k-observable-collection/index.html"><span class="identifier">KObservableCollection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.WeakKCollectionListener$onAdd(de.kotlinBerlin.kProperties.collection.KObservableCollection((de.kotlinBerlin.kProperties.collection.WeakKCollectionListener.E)), kotlin.collections.Collection((de.kotlinBerlin.kProperties.collection.WeakKCollectionListener.E)))/anAddedList">anAddedList</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-remove.html">onRemove</a></h4>
+</td>
+<td>
+<p>This method gets called whenever elements are removed from the <a href="../-k-observable-collection/index.html">KObservableCollection</a></p>
+<code><span class="keyword">fun </span><span class="identifier">onRemove</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.WeakKCollectionListener$onRemove(de.kotlinBerlin.kProperties.collection.KObservableCollection((de.kotlinBerlin.kProperties.collection.WeakKCollectionListener.E)), kotlin.collections.Collection((de.kotlinBerlin.kProperties.collection.WeakKCollectionListener.E)))/aCollection">aCollection</span><span class="symbol">:</span>&nbsp;<a href="../-k-observable-collection/index.html"><span class="identifier">KObservableCollection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.WeakKCollectionListener$onRemove(de.kotlinBerlin.kProperties.collection.KObservableCollection((de.kotlinBerlin.kProperties.collection.WeakKCollectionListener.E)), kotlin.collections.Collection((de.kotlinBerlin.kProperties.collection.WeakKCollectionListener.E)))/aRemovedList">aRemovedList</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>chooseBinding - kProperties</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">kProperties</a>&nbsp;/&nbsp;<a href="index.html">de.kotlinBerlin.kProperties.binding</a>&nbsp;/&nbsp;<a href="./choose-binding.html">chooseBinding</a><br/>
+<br/>
+<h1>chooseBinding</h1>
+<a name="de.kotlinBerlin.kProperties.binding$chooseBinding(de.kotlinBerlin.kProperties.value.KObservableValue((de.kotlinBerlin.kProperties.binding.chooseBinding.W)), kotlin.Function1((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder((de.kotlinBerlin.kProperties.binding.chooseBinding.W, de.kotlinBerlin.kProperties.binding.chooseBinding.T)), kotlin.Unit)))"></a>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">W</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">chooseBinding</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.binding$chooseBinding(de.kotlinBerlin.kProperties.value.KObservableValue((de.kotlinBerlin.kProperties.binding.chooseBinding.W)), kotlin.Function1((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder((de.kotlinBerlin.kProperties.binding.chooseBinding.W, de.kotlinBerlin.kProperties.binding.chooseBinding.T)), kotlin.Unit)))/aWhenObject">aWhenObject</span><span class="symbol">:</span>&nbsp;<a href="../de.kotlin-berlin.k-properties.value/-k-observable-value/index.html"><span class="identifier">KObservableValue</span></a><span class="symbol">&lt;</span><span class="identifier">W</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="de.kotlinBerlin.kProperties.binding$chooseBinding(de.kotlinBerlin.kProperties.value.KObservableValue((de.kotlinBerlin.kProperties.binding.chooseBinding.W)), kotlin.Function1((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder((de.kotlinBerlin.kProperties.binding.chooseBinding.W, de.kotlinBerlin.kProperties.binding.chooseBinding.T)), kotlin.Unit)))/anInitBlock">anInitBlock</span><span class="symbol">:</span>&nbsp;<a href="-k-choose-binding-builder/index.html"><span class="identifier">KChooseBindingBuilder</span></a><span class="symbol">&lt;</span><span class="identifier">W</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-k-binding/index.html"><span class="identifier">KBinding</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>Creates a new <a href="-k-binding/index.html">KBinding</a> that represents a when style binding. In <a href="choose-binding.html#de.kotlinBerlin.kProperties.binding$chooseBinding(de.kotlinBerlin.kProperties.value.KObservableValue((de.kotlinBerlin.kProperties.binding.chooseBinding.W)), kotlin.Function1((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder((de.kotlinBerlin.kProperties.binding.chooseBinding.W, de.kotlinBerlin.kProperties.binding.chooseBinding.T)), kotlin.Unit)))/anInitBlock">anInitBlock</a> you can add a value for the different cases that
+should be handled. To add these you can use either of the following methods:</p>
+<ul><li><a href="-k-choose-binding-builder/condition.html">KChooseBindingBuilder.condition</a></li>
+<li><a href="-k-choose-binding-builder/case.html">KChooseBindingBuilder.case</a></li>
+<li><a href="-k-choose-binding-builder/then-map.html">KChooseBindingBuilder.thenMap</a></li>
+<li><a href="-k-choose-binding-builder/then-map-value.html">KChooseBindingBuilder.thenMapValue</a></li>
+</ul>
+<p>Additionally you can have to provide an else value for the case
+that neither of the defined cases is true with the <a href="-k-choose-binding-builder/otherwise.html">KChooseBindingBuilder.otherwise</a> methods.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="if-binding.html">ifBinding</a></p>
+</p>
+</BODY>
+</HTML>

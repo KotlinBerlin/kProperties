@@ -1,0 +1,141 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>de.kotlinBerlin.kProperties.util - kProperties</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">kProperties</a>&nbsp;/&nbsp;<a href="./index.html">de.kotlinBerlin.kProperties.util</a><br/>
+<br/>
+<h2>Package de.kotlinBerlin.kProperties.util</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-weak-reference/index.html">WeakReference</a></h4>
+</td>
+<td>
+<p>An object wrapped by a <a href="-weak-reference/index.html">WeakReference</a> can be cleaned up by a garbage collector, event if the
+<a href="-weak-reference/index.html">WeakReference</a> itself is sill strongly reachable and there are no other strong references on the
+wrapped object.</p>
+<code><span class="keyword">class </span><span class="identifier">WeakReference</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extensions for External Classes</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="kotlin.collections.-collection/index.html">kotlin.collections.Collection</a></h4>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="kotlin.collections.-list/index.html">kotlin.collections.List</a></h4>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="kotlin.collections.-map/index.html">kotlin.collections.Map</a></h4>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="kotlin.collections.-set/index.html">kotlin.collections.Set</a></h4>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="create-immutable-collection.html">createImmutableCollection</a></h4>
+</td>
+<td>
+<p>Builder for an <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html">Collection</a> that is immutable not only relying on the interface immutability,
+but also preventing a cast to a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-collection/index.html">MutableCollection</a>.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <span class="identifier">createImmutableCollection</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.util$createImmutableCollection(kotlin.Function0((kotlin.collections.MutableCollection((de.kotlinBerlin.kProperties.util.createImmutableCollection.E)))), kotlin.Function1((kotlin.collections.MutableCollection((de.kotlinBerlin.kProperties.util.createImmutableCollection.E)), kotlin.Unit)))/creator">creator</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-collection/index.html"><span class="identifier">MutableCollection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;::ArrayList<span class="symbol">, </span><span class="identifier" id="de.kotlinBerlin.kProperties.util$createImmutableCollection(kotlin.Function0((kotlin.collections.MutableCollection((de.kotlinBerlin.kProperties.util.createImmutableCollection.E)))), kotlin.Function1((kotlin.collections.MutableCollection((de.kotlinBerlin.kProperties.util.createImmutableCollection.E)), kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-collection/index.html"><span class="identifier">MutableCollection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="create-immutable-list.html">createImmutableList</a></h4>
+</td>
+<td>
+<p>Builder for an <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a> that is immutable not only relying on the interface immutability,
+but also preventing a cast to a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <span class="identifier">createImmutableList</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.util$createImmutableList(kotlin.Function1((kotlin.collections.MutableList((de.kotlinBerlin.kProperties.util.createImmutableList.E)), kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="create-immutable-map.html">createImmutableMap</a></h4>
+</td>
+<td>
+<p>Builder for an <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a> that is immutable not only relying on the interface immutability,
+but also preventing a cast to a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html">MutableMap</a>.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <span class="identifier">createImmutableMap</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.util$createImmutableMap(kotlin.Function1((kotlin.collections.MutableMap((de.kotlinBerlin.kProperties.util.createImmutableMap.K, de.kotlinBerlin.kProperties.util.createImmutableMap.V)), kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="create-immutable-set.html">createImmutableSet</a></h4>
+</td>
+<td>
+<p>Builder for an <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html">Set</a> that is immutable not only relying on the interface immutability,
+but also preventing a cast to a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html">MutableSet</a>.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <span class="identifier">createImmutableSet</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.util$createImmutableSet(kotlin.Function1((kotlin.collections.MutableSet((de.kotlinBerlin.kProperties.util.createImmutableSet.E)), kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><span class="identifier">MutableSet</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="immutable-collection-of.html">immutableCollectionOf</a></h4>
+</td>
+<td>
+<p>Creates a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html">Collection</a> that contains all <a href="immutable-collection-of.html#de.kotlinBerlin.kProperties.util$immutableCollectionOf(kotlin.Array((de.kotlinBerlin.kProperties.util.immutableCollectionOf.E)))/elements">elements</a> and is immutable not only relying on the
+interface immutability, but also preventing a cast to a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-collection/index.html">MutableCollection</a>.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <span class="identifier">immutableCollectionOf</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="de.kotlinBerlin.kProperties.util$immutableCollectionOf(kotlin.Array((de.kotlinBerlin.kProperties.util.immutableCollectionOf.E)))/elements">elements</span><span class="symbol">:</span>&nbsp;<span class="identifier">E</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <span class="identifier">immutableCollectionOf</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.util$immutableCollectionOf(kotlin.collections.Iterable((de.kotlinBerlin.kProperties.util.immutableCollectionOf.E)))/elements">elements</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="immutable-list-of.html">immutableListOf</a></h4>
+</td>
+<td>
+<p>Creates a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a> that contains all <a href="immutable-list-of.html#de.kotlinBerlin.kProperties.util$immutableListOf(kotlin.Array((de.kotlinBerlin.kProperties.util.immutableListOf.E)))/elements">elements</a> and is immutable not only relying on the
+interface immutability, but also preventing a cast to a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <span class="identifier">immutableListOf</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="de.kotlinBerlin.kProperties.util$immutableListOf(kotlin.Array((de.kotlinBerlin.kProperties.util.immutableListOf.E)))/elements">elements</span><span class="symbol">:</span>&nbsp;<span class="identifier">E</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <span class="identifier">immutableListOf</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.util$immutableListOf(kotlin.collections.Iterable((de.kotlinBerlin.kProperties.util.immutableListOf.E)))/elements">elements</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="immutable-map-of.html">immutableMapOf</a></h4>
+</td>
+<td>
+<p>Creates a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a> that contains all <a href="immutable-map-of.html#de.kotlinBerlin.kProperties.util$immutableMapOf(kotlin.Array((kotlin.Pair((de.kotlinBerlin.kProperties.util.immutableMapOf.K, de.kotlinBerlin.kProperties.util.immutableMapOf.V)))))/elements">elements</a> and is immutable not only relying on the
+interface immutability, but also preventing a cast to a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html">MutableMap</a>.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <span class="identifier">immutableMapOf</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="de.kotlinBerlin.kProperties.util$immutableMapOf(kotlin.Array((kotlin.Pair((de.kotlinBerlin.kProperties.util.immutableMapOf.K, de.kotlinBerlin.kProperties.util.immutableMapOf.V)))))/elements">elements</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <span class="identifier">immutableMapOf</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.util$immutableMapOf(kotlin.collections.Iterable((kotlin.Pair((de.kotlinBerlin.kProperties.util.immutableMapOf.K, de.kotlinBerlin.kProperties.util.immutableMapOf.V)))))/elements">elements</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="immutable-set-of.html">immutableSetOf</a></h4>
+</td>
+<td>
+<p>Creates a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html">Set</a> that contains all <a href="immutable-set-of.html#de.kotlinBerlin.kProperties.util$immutableSetOf(kotlin.Array((de.kotlinBerlin.kProperties.util.immutableSetOf.E)))/elements">elements</a> and is immutable not only relying on the
+interface immutability, but also preventing a cast to a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html">MutableSet</a>.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <span class="identifier">immutableSetOf</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="de.kotlinBerlin.kProperties.util$immutableSetOf(kotlin.Array((de.kotlinBerlin.kProperties.util.immutableSetOf.E)))/elements">elements</span><span class="symbol">:</span>&nbsp;<span class="identifier">E</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span> <span class="identifier">immutableSetOf</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.util$immutableSetOf(kotlin.collections.Iterable((de.kotlinBerlin.kProperties.util.immutableSetOf.E)))/elements">elements</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

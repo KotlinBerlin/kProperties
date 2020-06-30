@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ifBinding - kProperties</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">kProperties</a>&nbsp;/&nbsp;<a href="index.html">de.kotlinBerlin.kProperties.binding</a>&nbsp;/&nbsp;<a href="./if-binding.html">ifBinding</a><br/>
+<br/>
+<h1>ifBinding</h1>
+<a name="de.kotlinBerlin.kProperties.binding$ifBinding(de.kotlinBerlin.kProperties.value.KObservableValue((kotlin.Boolean)), kotlin.Function1((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder((de.kotlinBerlin.kProperties.binding.ifBinding.T)), kotlin.Unit)))"></a>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">ifBinding</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.binding$ifBinding(de.kotlinBerlin.kProperties.value.KObservableValue((kotlin.Boolean)), kotlin.Function1((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder((de.kotlinBerlin.kProperties.binding.ifBinding.T)), kotlin.Unit)))/aCondition">aCondition</span><span class="symbol">:</span>&nbsp;<a href="../de.kotlin-berlin.k-properties.value/-k-observable-value/index.html"><span class="identifier">KObservableValue</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="de.kotlinBerlin.kProperties.binding$ifBinding(de.kotlinBerlin.kProperties.value.KObservableValue((kotlin.Boolean)), kotlin.Function1((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder((de.kotlinBerlin.kProperties.binding.ifBinding.T)), kotlin.Unit)))/anInitBlock">anInitBlock</span><span class="symbol">:</span>&nbsp;<a href="-k-if-binding-builder/index.html"><span class="identifier">KIfBindingBuilder</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-k-binding/index.html"><span class="identifier">KBinding</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>Creates a new <a href="-k-binding/index.html">KBinding</a> that represents a if the else style binding. In <a href="if-binding.html#de.kotlinBerlin.kProperties.binding$ifBinding(de.kotlinBerlin.kProperties.value.KObservableValue((kotlin.Boolean)), kotlin.Function1((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder((de.kotlinBerlin.kProperties.binding.ifBinding.T)), kotlin.Unit)))/anInitBlock">anInitBlock</a> you can add a value for the case that
+<a href="if-binding.html#de.kotlinBerlin.kProperties.binding$ifBinding(de.kotlinBerlin.kProperties.value.KObservableValue((kotlin.Boolean)), kotlin.Function1((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder((de.kotlinBerlin.kProperties.binding.ifBinding.T)), kotlin.Unit)))/aCondition">aCondition</a> with the <a href="-k-if-binding-builder/then.html">KIfBindingBuilder.then</a> methods. Additionally you can have to provide an else value for the case
+that <a href="if-binding.html#de.kotlinBerlin.kProperties.binding$ifBinding(de.kotlinBerlin.kProperties.value.KObservableValue((kotlin.Boolean)), kotlin.Function1((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder((de.kotlinBerlin.kProperties.binding.ifBinding.T)), kotlin.Unit)))/aCondition">aCondition</a> is false with the <a href="-k-if-binding-builder/otherwise.html">KIfBindingBuilder.otherwise</a> methods. Alternatively you can use the
+<a href="-k-if-binding-builder/else-if.html">KIfBindingBuilder.elseIf</a> method to create a nested condition that itself can must be configured by its own <a href="-k-if-binding-builder/index.html">KIfBindingBuilder</a>.</p>
+<p>If you get many nested elseIf statements then its better to use the <a href="choose-binding.html">chooseBinding</a> method, that creates only a single <a href="-k-binding/index.html">KBinding</a> for all cases
+whereas this will produce one additional <a href="-k-binding/index.html">KBinding</a> instance per elseIf statement.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="choose-binding.html">chooseBinding</a></p>
+</p>
+</BODY>
+</HTML>

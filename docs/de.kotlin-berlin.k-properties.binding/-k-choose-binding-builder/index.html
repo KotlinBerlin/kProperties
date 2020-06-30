@@ -1,0 +1,77 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>KChooseBindingBuilder - kProperties</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kProperties</a>&nbsp;/&nbsp;<a href="../index.html">de.kotlinBerlin.kProperties.binding</a>&nbsp;/&nbsp;<a href="./index.html">KChooseBindingBuilder</a><br/>
+<br/>
+<h1>KChooseBindingBuilder</h1>
+<code><span class="keyword">class </span><span class="identifier">KChooseBindingBuilder</span><span class="symbol">&lt;</span><span class="identifier">W</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>A builder for a when style binding</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="when-object.html">whenObject</a></h4>
+</td>
+<td>
+<p>The object that all conditions depend on.</p>
+<code><span class="keyword">val </span><span class="identifier">whenObject</span><span class="symbol">: </span><a href="../../de.kotlin-berlin.k-properties.value/-k-observable-value/index.html"><span class="identifier">KObservableValue</span></a><span class="symbol">&lt;</span><span class="identifier">W</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="case.html">case</a></h4>
+</td>
+<td>
+<p>creates a new case for the when binding and defines the condition for it. The result value has to be defined by the returned <a href="../-k-choose-binding-condition-part-builder/index.html">KChooseBindingConditionPartBuilder</a></p>
+<code><span class="keyword">fun </span><span class="identifier">case</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder$case(kotlin.Function1((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder.W, kotlin.Boolean)))/aCondition">aCondition</span><span class="symbol">:</span>&nbsp;<span class="identifier">W</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-k-choose-binding-condition-part-builder/index.html"><span class="identifier">KChooseBindingConditionPartBuilder</span></a><span class="symbol">&lt;</span><span class="identifier">W</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">,</span>&nbsp;<span class="identifier">W</span><span class="symbol">&gt;</span></code>
+<p>shortcut for creating a new case that as a condition makes an is check. The result value has to be defined by the returned <a href="../-k-choose-binding-condition-part-builder/index.html">KChooseBindingConditionPartBuilder</a></p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">C</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <span class="identifier">case</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-k-choose-binding-condition-part-builder/index.html"><span class="identifier">KChooseBindingConditionPartBuilder</span></a><span class="symbol">&lt;</span><span class="identifier">W</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="condition.html">condition</a></h4>
+</td>
+<td>
+<p>Adds a case with <a href="condition.html#de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder$condition(kotlin.Function1((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder.W, kotlin.Boolean)), de.kotlinBerlin.kProperties.value.KObservableValue((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder.T)))/aCondition">aCondition</a> and <a href="condition.html#de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder$condition(kotlin.Function1((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder.W, kotlin.Boolean)), de.kotlinBerlin.kProperties.value.KObservableValue((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder.T)))/aValue">aValue</a> to the when binding</p>
+<code><span class="keyword">fun </span><span class="identifier">condition</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder$condition(kotlin.Function1((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder.W, kotlin.Boolean)), de.kotlinBerlin.kProperties.value.KObservableValue((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder.T)))/aCondition">aCondition</span><span class="symbol">:</span>&nbsp;<span class="identifier">W</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder$condition(kotlin.Function1((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder.W, kotlin.Boolean)), de.kotlinBerlin.kProperties.value.KObservableValue((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder.T)))/aValue">aValue</span><span class="symbol">:</span>&nbsp;<a href="../../de.kotlin-berlin.k-properties.value/-k-observable-value/index.html"><span class="identifier">KObservableValue</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="otherwise.html">otherwise</a></h4>
+</td>
+<td>
+<p>Simply sets a value as the value that is returned if neither of the defined cases is true</p>
+<code><span class="keyword">fun </span><span class="identifier">otherwise</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder$otherwise(de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder.T)/aValue">aValue</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets an <a href="../../de.kotlin-berlin.k-properties.value/-k-observable-value/index.html">KObservableValue</a> as the value that is returned if neither of the defined cases is true.
+Its observed for changes and will update the returned binding appropriately.</p>
+<code><span class="keyword">fun </span><span class="identifier">otherwise</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder$otherwise(kotlin.Function0((de.kotlinBerlin.kProperties.value.KObservableValue((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder.T)))))/block">block</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../../de.kotlin-berlin.k-properties.value/-k-observable-value/index.html"><span class="identifier">KObservableValue</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="then-map.html">thenMap</a></h4>
+</td>
+<td>
+<p>Shortcut for a chained call to <a href="case.html">case</a> and <a href="../-k-choose-binding-condition-part-builder/then-map.html">KChooseBindingConditionPartBuilder.thenMap</a></p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">C</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <span class="identifier">thenMap</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder$thenMap(kotlin.Function1((de.kotlinBerlin.kProperties.value.KObservableValue((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder.thenMap.C)), de.kotlinBerlin.kProperties.value.KObservableValue((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder.T)))))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../../de.kotlin-berlin.k-properties.value/-k-observable-value/index.html"><span class="identifier">KObservableValue</span></a><span class="symbol">&lt;</span><span class="identifier">C</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../../de.kotlin-berlin.k-properties.value/-k-observable-value/index.html"><span class="identifier">KObservableValue</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="then-map-value.html">thenMapValue</a></h4>
+</td>
+<td>
+<p>Shortcut for a chained call to <a href="case.html">case</a> and <a href="../-k-choose-binding-condition-part-builder/then-map-value.html">KChooseBindingConditionPartBuilder.thenMapValue</a></p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">C</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <span class="identifier">thenMapValue</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder$thenMapValue(kotlin.Function1((de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder.thenMapValue.C, de.kotlinBerlin.kProperties.binding.KChooseBindingBuilder.T)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">C</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

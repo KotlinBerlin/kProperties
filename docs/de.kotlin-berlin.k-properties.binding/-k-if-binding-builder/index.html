@@ -1,0 +1,51 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>KIfBindingBuilder - kProperties</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kProperties</a>&nbsp;/&nbsp;<a href="../index.html">de.kotlinBerlin.kProperties.binding</a>&nbsp;/&nbsp;<a href="./index.html">KIfBindingBuilder</a><br/>
+<br/>
+<h1>KIfBindingBuilder</h1>
+<code><span class="keyword">class </span><span class="identifier">KIfBindingBuilder</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>A builder for a if then else style binding</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="else-if.html">elseIf</a></h4>
+</td>
+<td>
+<p>Allows to nest another if condition as the value for the case where the condition is false.</p>
+<code><span class="keyword">fun </span><span class="identifier">elseIf</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.binding.KIfBindingBuilder$elseIf(de.kotlinBerlin.kProperties.value.KObservableValue((kotlin.Boolean)), kotlin.Function1((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder.T)), kotlin.Unit)))/aCondition">aCondition</span><span class="symbol">:</span>&nbsp;<a href="../../de.kotlin-berlin.k-properties.value/-k-observable-value/index.html"><span class="identifier">KObservableValue</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="de.kotlinBerlin.kProperties.binding.KIfBindingBuilder$elseIf(de.kotlinBerlin.kProperties.value.KObservableValue((kotlin.Boolean)), kotlin.Function1((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder.T)), kotlin.Unit)))/anInitBlock">anInitBlock</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">KIfBindingBuilder</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="otherwise.html">otherwise</a></h4>
+</td>
+<td>
+<p>Simply sets a value as the value that is returned if the condition is false.</p>
+<code><span class="keyword">fun </span><span class="identifier">otherwise</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.binding.KIfBindingBuilder$otherwise(de.kotlinBerlin.kProperties.binding.KIfBindingBuilder.T)/aValue">aValue</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets an <a href="../../de.kotlin-berlin.k-properties.value/-k-observable-value/index.html">KObservableValue</a> as the value that is returned if the condition is false. Its observed for changes
+and will update the returned binding appropriately.</p>
+<code><span class="keyword">fun </span><span class="identifier">otherwise</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.binding.KIfBindingBuilder$otherwise(kotlin.Function0((de.kotlinBerlin.kProperties.value.KObservableValue((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder.T)))))/block">block</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../../de.kotlin-berlin.k-properties.value/-k-observable-value/index.html"><span class="identifier">KObservableValue</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="then.html">then</a></h4>
+</td>
+<td>
+<p>Simply sets a value as the value that is returned if the condition is true.</p>
+<code><span class="keyword">fun </span><span class="identifier">then</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.binding.KIfBindingBuilder$then(de.kotlinBerlin.kProperties.binding.KIfBindingBuilder.T)/aValue">aValue</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets an <a href="../../de.kotlin-berlin.k-properties.value/-k-observable-value/index.html">KObservableValue</a> as the value that is returned if the condition is true. Its observed for changes
+and will update the returned binding appropriately.</p>
+<code><span class="keyword">fun </span><span class="identifier">then</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.binding.KIfBindingBuilder$then(kotlin.Function0((de.kotlinBerlin.kProperties.value.KObservableValue((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder.T)))))/block">block</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../../de.kotlin-berlin.k-properties.value/-k-observable-value/index.html"><span class="identifier">KObservableValue</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Allows to nest another if condition as the value for the case where the condition is true.</p>
+<code><span class="keyword">fun </span><span class="identifier">then</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.binding.KIfBindingBuilder$then(de.kotlinBerlin.kProperties.value.KObservableValue((kotlin.Boolean)), kotlin.Function1((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder.T)), kotlin.Unit)))/aCondition">aCondition</span><span class="symbol">:</span>&nbsp;<a href="../../de.kotlin-berlin.k-properties.value/-k-observable-value/index.html"><span class="identifier">KObservableValue</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="de.kotlinBerlin.kProperties.binding.KIfBindingBuilder$then(de.kotlinBerlin.kProperties.value.KObservableValue((kotlin.Boolean)), kotlin.Function1((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder((de.kotlinBerlin.kProperties.binding.KIfBindingBuilder.T)), kotlin.Unit)))/anInitBlock">anInitBlock</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">KIfBindingBuilder</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

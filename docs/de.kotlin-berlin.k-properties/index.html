@@ -1,0 +1,59 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>de.kotlinBerlin.kProperties - kProperties</title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">kProperties</a>&nbsp;/&nbsp;<a href="./index.html">de.kotlinBerlin.kProperties</a><br/>
+<br/>
+<h2>Package de.kotlinBerlin.kProperties</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-k-invalidation-listener/index.html">KInvalidationListener</a></h4>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">KInvalidationListener</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-k-observable/index.html">KObservable</a></h4>
+</td>
+<td>
+<p>An <a href="-k-observable/index.html">KObservable</a> wraps content and allows to observe the content for invalidations.</p>
+<code><span class="keyword">interface </span><span class="identifier">KObservable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-weak-k-invalidation-listener/index.html">WeakKInvalidationListener</a></h4>
+</td>
+<td>
+<p>A <a href="-weak-k-invalidation-listener/index.html">WeakKInvalidationListener</a> can be used if an <a href="-k-observable/index.html">KObservable</a>
+should only maintain a weak reference to the listener. This helps to avoid
+memory leaks that can occur if observers are not unregistered from observed
+objects after use.</p>
+<code><span class="keyword">class </span><span class="identifier">WeakKInvalidationListener</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-k-invalidation-listener/index.html"><span class="identifier">KInvalidationListener</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-no name provided-.html">&lt;no name provided&gt;</a></h4>
+</td>
+<td>
+<p>An <a href="-k-invalidation-listener/index.html">KInvalidationListener</a> is notified whenever an
+<a href="-k-observable/index.html">KObservable</a> becomes invalid. It can be registered and
+unregistered with <a href="-k-observable/add-listener.html">KObservable.addListener</a> respectively <a href="-k-observable/remove-listener.html">KObservable.removeListener</a>.
+The same instance of <a href="-k-invalidation-listener/index.html">KInvalidationListener</a> can be registered to listen to multiple <a href="-k-observable/index.html">KObservable</a> instances.</p>
+<code><span class="keyword">fun </span><span class="identifier">&lt;no name provided&gt;</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

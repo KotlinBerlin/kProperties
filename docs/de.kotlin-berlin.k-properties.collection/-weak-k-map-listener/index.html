@@ -1,0 +1,62 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>WeakKMapListener - kProperties</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kProperties</a>&nbsp;/&nbsp;<a href="../index.html">de.kotlinBerlin.kProperties.collection</a>&nbsp;/&nbsp;<a href="./index.html">WeakKMapListener</a><br/>
+<br/>
+<h1>WeakKMapListener</h1>
+<code><span class="keyword">class </span><span class="identifier">WeakKMapListener</span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-k-map-listener/index.html"><span class="identifier">KMapListener</span></a><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>A <a href="./index.html">WeakKMapListener</a> can be used if an <a href="../-k-observable-map/index.html">KObservableMap</a>
+should only maintain a weak reference to the listener. This helps to avoid
+memory leaks that can occur if observers are not unregistered from observed
+objects after use.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>A <a href="./index.html">WeakKMapListener</a> can be used if an <a href="../-k-observable-map/index.html">KObservableMap</a>
+should only maintain a weak reference to the listener. This helps to avoid
+memory leaks that can occur if observers are not unregistered from observed
+objects after use.</p>
+<code><span class="identifier">WeakKMapListener</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.WeakKMapListener$<init>(de.kotlinBerlin.kProperties.collection.KMapListener((de.kotlinBerlin.kProperties.collection.WeakKMapListener.K, de.kotlinBerlin.kProperties.collection.WeakKMapListener.V)))/aListener">aListener</span><span class="symbol">:</span>&nbsp;<a href="../-k-map-listener/index.html"><span class="identifier">KMapListener</span></a><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="on-add.html">onAdd</a></h4>
+</td>
+<td>
+<p>This method gets called whenever elements are added to the <a href="../-k-observable-map/index.html">KObservableMap</a></p>
+<code><span class="keyword">fun </span><span class="identifier">onAdd</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.WeakKMapListener$onAdd(de.kotlinBerlin.kProperties.collection.KObservableMap((de.kotlinBerlin.kProperties.collection.WeakKMapListener.K, de.kotlinBerlin.kProperties.collection.WeakKMapListener.V)), kotlin.collections.Collection((kotlin.Pair((de.kotlinBerlin.kProperties.collection.WeakKMapListener.K, de.kotlinBerlin.kProperties.collection.WeakKMapListener.V)))))/aMap">aMap</span><span class="symbol">:</span>&nbsp;<a href="../-k-observable-map/index.html"><span class="identifier">KObservableMap</span></a><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.WeakKMapListener$onAdd(de.kotlinBerlin.kProperties.collection.KObservableMap((de.kotlinBerlin.kProperties.collection.WeakKMapListener.K, de.kotlinBerlin.kProperties.collection.WeakKMapListener.V)), kotlin.collections.Collection((kotlin.Pair((de.kotlinBerlin.kProperties.collection.WeakKMapListener.K, de.kotlinBerlin.kProperties.collection.WeakKMapListener.V)))))/anAddedEntries">anAddedEntries</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-remove.html">onRemove</a></h4>
+</td>
+<td>
+<p>This method gets called whenever elements are removed from the <a href="../-k-observable-map/index.html">KObservableMap</a></p>
+<code><span class="keyword">fun </span><span class="identifier">onRemove</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.WeakKMapListener$onRemove(de.kotlinBerlin.kProperties.collection.KObservableMap((de.kotlinBerlin.kProperties.collection.WeakKMapListener.K, de.kotlinBerlin.kProperties.collection.WeakKMapListener.V)), kotlin.collections.Collection((kotlin.Pair((de.kotlinBerlin.kProperties.collection.WeakKMapListener.K, de.kotlinBerlin.kProperties.collection.WeakKMapListener.V)))))/aMap">aMap</span><span class="symbol">:</span>&nbsp;<a href="../-k-observable-map/index.html"><span class="identifier">KObservableMap</span></a><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.WeakKMapListener$onRemove(de.kotlinBerlin.kProperties.collection.KObservableMap((de.kotlinBerlin.kProperties.collection.WeakKMapListener.K, de.kotlinBerlin.kProperties.collection.WeakKMapListener.V)), kotlin.collections.Collection((kotlin.Pair((de.kotlinBerlin.kProperties.collection.WeakKMapListener.K, de.kotlinBerlin.kProperties.collection.WeakKMapListener.V)))))/aRemovedEntries">aRemovedEntries</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-replace.html">onReplace</a></h4>
+</td>
+<td>
+<p>This method gets called whenever elements are replaced in the <a href="../-k-observable-map/index.html">KObservableMap</a></p>
+<code><span class="keyword">fun </span><span class="identifier">onReplace</span><span class="symbol">(</span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.WeakKMapListener$onReplace(de.kotlinBerlin.kProperties.collection.KObservableMap((de.kotlinBerlin.kProperties.collection.WeakKMapListener.K, de.kotlinBerlin.kProperties.collection.WeakKMapListener.V)), kotlin.collections.Collection((de.kotlinBerlin.kProperties.collection.KMapListener.Replacement((de.kotlinBerlin.kProperties.collection.WeakKMapListener.K, de.kotlinBerlin.kProperties.collection.WeakKMapListener.V)))))/aMap">aMap</span><span class="symbol">:</span>&nbsp;<a href="../-k-observable-map/index.html"><span class="identifier">KObservableMap</span></a><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="de.kotlinBerlin.kProperties.collection.WeakKMapListener$onReplace(de.kotlinBerlin.kProperties.collection.KObservableMap((de.kotlinBerlin.kProperties.collection.WeakKMapListener.K, de.kotlinBerlin.kProperties.collection.WeakKMapListener.V)), kotlin.collections.Collection((de.kotlinBerlin.kProperties.collection.KMapListener.Replacement((de.kotlinBerlin.kProperties.collection.WeakKMapListener.K, de.kotlinBerlin.kProperties.collection.WeakKMapListener.V)))))/aReplacedEntries">aReplacedEntries</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">Replacement</span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
