@@ -5,19 +5,16 @@ import java.io.ByteArrayOutputStream
 import java.nio.charset.Charset
 
 plugins {
-    kotlin("multiplatform") version "1.4-M2"
+    kotlin("multiplatform") version "1.4.10"
     id("maven-publish")
     id("org.jetbrains.dokka") version "0.10.1"
 }
 
 group = "de.kotlin-berlin"
-version = "1.0-FINAL"
+version = "2.0-FINAL"
 
 repositories {
     jcenter()
-    maven {
-        url = uri("https://dl.bintray.com/kotlin/kotlin-eap")
-    }
 }
 
 kotlin {
@@ -27,8 +24,8 @@ kotlin {
         }
     }
     js {
-        browser {
-        }
+        browser()
+        nodejs()
     }
     mingwX64()
     mingwX86()
@@ -58,30 +55,16 @@ kotlin {
     linuxX64()
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(kotlin("stdlib-common"))
-            }
-        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
             }
         }
-        val jvmMain by getting {
-            dependencies {
-                implementation(kotlin("stdlib"))
-            }
-        }
+
         val jvmTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-            }
-        }
-        val jsMain by getting {
-            dependencies {
-                implementation(kotlin("stdlib-js"))
             }
         }
         val jsTest by getting {

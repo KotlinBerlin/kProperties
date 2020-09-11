@@ -1,7 +1,7 @@
 package de.kotlinBerlin.kProperties
 
 /**
- * An [KObservable] wraps content and allows to observe the content for invalidations.
+ * An [KObservable] wraps content and allows to observe the content for invalidation's.
  */
 interface KObservable {
 

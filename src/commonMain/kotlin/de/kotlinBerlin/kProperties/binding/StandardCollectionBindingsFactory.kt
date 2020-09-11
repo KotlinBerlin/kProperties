@@ -132,8 +132,8 @@ fun <E, L : KObservableList<E>> KObservableList<E>.observeValueAt(anIndexObserva
             override fun onMove(aList: KObservableList<E>, aPermutationList: Collection<KListListener.Permutation<E>>) {
                 if (aPermutationList.isEmpty()) return
                 val tempIndexList = aPermutationList.flatMap { listOf(it.newIndex, it.oldIndex) }
-                val tempMax = tempIndexList.max() ?: aList.size
-                val tempMin = tempIndexList.min() ?: 0
+                val tempMax = tempIndexList.maxOrNull() ?: aList.size
+                val tempMin = tempIndexList.minOrNull() ?: 0
                 val tempIndex = anIndexObservable.value
                 if (tempIndex in tempMin..tempMax) invalidate()
             }

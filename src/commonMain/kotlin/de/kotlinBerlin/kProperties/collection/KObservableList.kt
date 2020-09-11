@@ -43,7 +43,7 @@ interface KObservableList<E> : KObservableCollection<E>, MutableList<E> {
 
     /**
      * When using the implementations of this library, then he returned list is currently
-     * not observable and doesnt trigger any change events on the main list if any modifications
+     * not observable and doesn't trigger any change events on the main list if any modifications
      * are made through the sub list. This may change in the future.
      */
     override fun subList(fromIndex: Int, toIndex: Int): MutableList<E>

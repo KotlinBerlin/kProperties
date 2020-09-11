@@ -64,7 +64,7 @@ As a fast overview, here are the most important interfaces and their usage:
 
 ### [KObservable](https://kotlinberlin.github.io/kProperties/de.kotlin-berlin.k-properties/-k-observable/index.html)
 This is the interface that all the other interfaces mentioned here implement themselves. It allows observers to react to
-invalidations of its content through the [KInvalidationListener](https://kotlinberlin.github.io/kProperties/de.kotlin-berlin.k-properties/-k-invalidation-listener/index.html) interface.
+invalidation's of its content through the [KInvalidationListener](https://kotlinberlin.github.io/kProperties/de.kotlin-berlin.k-properties/-k-invalidation-listener/index.html) interface.
 
 ### [KObservableValue](https://kotlinberlin.github.io/kProperties/de.kotlin-berlin.k-properties.value/-k-observable-value/index.html)
 A `KObservableValue` allows to observe the value wrapped by it for changes through the [KChangeListener](https://kotlinberlin.github.io/kProperties/de.kotlin-berlin.k-properties.value/-k-change-listener/index.html) interface.
