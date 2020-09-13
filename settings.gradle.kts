@@ -1,12 +1,11 @@
-pluginManagement {
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()
-        maven {
-            url = uri("https://dl.bintray.com/kotlin/kotlin-eap")
-        }
-    }
-
-}
 rootProject.name = "kProperties"
 
+include("kProperties-core")
+include("kProperties-jfx")
+
+rootProject.children.forEach {
+    it.buildFileName = "${it.name}.gradle.kts"
+    if(!it.buildFile.exists()) {
+        println("Build File not existing: ${it.buildFile.absolutePath}")
+    }
+}

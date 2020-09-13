@@ -3,5 +3,4 @@ build/
 *.iml
 .gradle/
 *.orig
-gradle.properties
 *.hprof
