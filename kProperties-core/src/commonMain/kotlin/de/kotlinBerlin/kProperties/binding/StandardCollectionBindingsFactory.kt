@@ -9,10 +9,10 @@ import de.kotlinBerlin.kProperties.collection.*
 import de.kotlinBerlin.kProperties.constants.toObservableConst
 import de.kotlinBerlin.kProperties.value.KObservableValue
 
-/** Returns a [KCollectionBinding] which observes this [KObservableValue] for changes. */
-fun <E, C : KObservableCollection<E>?> KObservableValue<C>.toCollectionBinding(): KCollectionBinding<E, C> {
+/** Returns a [KMutableCollectionBinding] which observes this [KObservableValue] for changes. */
+fun <E, C : KObservableMutableCollection<E>?> KObservableValue<C>.toCollectionBinding(): KMutableCollectionBinding<E, C> {
     val tempFunc: () -> C = { this.value }
-    return object : BasicKCollectionBinding<E, C>(tempFunc) {
+    return object : BasicKMutableCollectionBinding<E, C>(tempFunc) {
 
         private val listener: KInvalidationListener = KInvalidationListener { invalidate() }
         private val weakListener: WeakKInvalidationListener = WeakKInvalidationListener(listener)
@@ -27,10 +27,10 @@ fun <E, C : KObservableCollection<E>?> KObservableValue<C>.toCollectionBinding()
     }
 }
 
-/** Returns a [KListBinding] which observes this [KObservableValue] for changes. */
-fun <E, L : KObservableList<E>?> KObservableValue<L>.toListBinding(): KListBinding<E, L> {
+/** Returns a [KMutableListBinding] which observes this [KObservableValue] for changes. */
+fun <E, L : KObservableMutableList<E>?> KObservableValue<L>.toListBinding(): KMutableListBinding<E, L> {
     val tempFunc: () -> L = { this.value }
-    return object : BasicKListBinding<E, L>(tempFunc) {
+    return object : BasicKMutableListBinding<E, L>(tempFunc) {
         private val listener: KInvalidationListener = KInvalidationListener { invalidate() }
         private val weakListener: WeakKInvalidationListener = WeakKInvalidationListener(listener)
 
@@ -44,10 +44,10 @@ fun <E, L : KObservableList<E>?> KObservableValue<L>.toListBinding(): KListBindi
     }
 }
 
-/** Returns a [KSetBinding] which observes this [KObservableValue] for changes. */
-fun <E, S : KObservableSet<E>?> KObservableValue<S>.toSetBinding(): KSetBinding<E, S> {
+/** Returns a [KMutableSetBinding] which observes this [KObservableValue] for changes. */
+fun <E, S : KObservableMutableSet<E>?> KObservableValue<S>.toSetBinding(): KMutableSetBinding<E, S> {
     val tempFunc: () -> S = { this.value }
-    return object : BasicKSetBinding<E, S>(tempFunc) {
+    return object : BasicKMutableSetBinding<E, S>(tempFunc) {
         private val listener: KInvalidationListener = KInvalidationListener { invalidate() }
         private val weakListener: WeakKInvalidationListener = WeakKInvalidationListener(listener)
 
@@ -63,31 +63,31 @@ fun <E, S : KObservableSet<E>?> KObservableValue<S>.toSetBinding(): KSetBinding<
 
 /**
  * Creates a [KBinding] that observes [aKeyObservable] and [this] for changes and updates its value to match the value
- * that is associated with the current value of [aKeyObservable] in the [KObservableMap]
+ * that is associated with the current value of [aKeyObservable] in the [KObservableMutableMap]
  */
-fun <K, V> KObservableMap<K, V>.observeValueAt(aKeyObservable: KObservableValue<K>): KBinding<V?> {
+fun <K, V> KObservableMutableMap<K, V>.observeValueAt(aKeyObservable: KObservableValue<K>): KBinding<V?> {
     return object : KObjectBinding<V?>() {
 
         private val listener = KInvalidationListener { invalidate() }
         private val weakListener = WeakKInvalidationListener(listener)
 
-        private val mapListener = object : KMapListener<K, V> {
+        private val mapListener = object : KMutableMapListener<K, V> {
             override fun onReplace(
-                    aMap: KObservableMap<K, V>,
-                    aReplacedEntries: Collection<KMapListener.Replacement<K, V>>
+                aMutableMap: KObservableMutableMap<K, V>,
+                aReplacedEntries: Collection<MapReplacement<K, V>>
             ) {
                 if (aReplacedEntries.any { it.key == aKeyObservable.value }) invalidate()
             }
 
-            override fun onAdd(aMap: KObservableMap<K, V>, anAddedEntries: Collection<Pair<K, V>>) {
+            override fun onAdd(aMutableMap: KObservableMutableMap<K, V>, anAddedEntries: Collection<Pair<K, V>>) {
                 if (anAddedEntries.any { it.first == aKeyObservable.value }) invalidate()
             }
 
-            override fun onRemove(aMap: KObservableMap<K, V>, aRemovedEntries: Collection<Pair<K, V>>) {
+            override fun onRemove(aMutableMap: KObservableMutableMap<K, V>, aRemovedEntries: Collection<Pair<K, V>>) {
                 if (aRemovedEntries.any { it.first == aKeyObservable.value }) invalidate()
             }
         }
-        private val weakMapListener = WeakKMapListener(mapListener)
+        private val weakMapListener = WeakKMutableMapListener(mapListener)
 
         init {
             this@observeValueAt.addListener(weakMapListener)
@@ -113,39 +113,39 @@ fun <K, V> KObservableMap<K, V>.observeValueAt(aKeyObservable: KObservableValue<
 
 /**
  * Creates a [KBinding] that observes [this] for changes and updates its value to match the value
- * that is associated with [aKey] in the [KObservableMap]
+ * that is associated with [aKey] in the [KObservableMutableMap]
  */
-fun <K, V> KObservableMap<K, V>.observeValueAt(aKey: K): KBinding<V?> = this.observeValueAt(aKey.toObservableConst())
+fun <K, V> KObservableMutableMap<K, V>.observeValueAt(aKey: K): KBinding<V?> = this.observeValueAt(aKey.toObservableConst())
 
 /**
  * Creates a [KBinding] that observes [anIndexObservable] and [this] for changes and updates its value to match the value
- * that is associated with the current index of [anIndexObservable] in the [KObservableList]
+ * that is associated with the current index of [anIndexObservable] in the [KObservableMutableList]
  */
-fun <E, L : KObservableList<E>> KObservableList<E>.observeValueAt(anIndexObservable: KObservableValue<Int>): KBinding<E> {
+fun <E, L : KObservableMutableList<E>> KObservableMutableList<E>.observeValueAt(anIndexObservable: KObservableValue<Int>): KBinding<E> {
     return object : KObjectBinding<E>() {
 
         private val listener = KInvalidationListener { invalidate() }
         private val weakListener = WeakKInvalidationListener(listener)
 
-        private val listListener = object : KListListener<E> {
+        private val listListener = object : KMutableListListener<E> {
 
-            override fun onMove(aList: KObservableList<E>, aPermutationList: Collection<KListListener.Permutation<E>>) {
+            override fun onMove(aMutableList: KObservableMutableList<E>, aPermutationList: Collection<ListPermutation<E>>) {
                 if (aPermutationList.isEmpty()) return
                 val tempIndexList = aPermutationList.flatMap { listOf(it.newIndex, it.oldIndex) }
-                val tempMax = tempIndexList.maxOrNull() ?: aList.size
+                val tempMax = tempIndexList.maxOrNull() ?: aMutableList.size
                 val tempMin = tempIndexList.minOrNull() ?: 0
                 val tempIndex = anIndexObservable.value
                 if (tempIndex in tempMin..tempMax) invalidate()
             }
 
             override fun onReplace(
-                    aList: KObservableList<E>,
-                    aReplacementList: Collection<KListListener.Replacement<E>>
+                aMutableList: KObservableMutableList<E>,
+                aReplacementList: Collection<ListReplacement<E>>
             ) {
                 if (aReplacementList.any { it.index == anIndexObservable.value }) invalidate()
             }
         }
-        private val weakListListener = WeakKListListener(listListener)
+        private val weakListListener = WeakKMutableListListener(listListener)
 
         init {
             this@observeValueAt.addListener(weakListListener)
@@ -171,6 +171,6 @@ fun <E, L : KObservableList<E>> KObservableList<E>.observeValueAt(anIndexObserva
 
 /**
  * Creates a [KBinding] that observes [this] for changes and updates its value to match the value
- * that is associated with [anIndex] in the [KObservableList]
+ * that is associated with [anIndex] in the [KObservableMutableList]
  */
-fun <E> KObservableList<E>.observeValueAt(anIndex: Int): KBinding<E> = this.observeValueAt(anIndex.toObservableConst())
+fun <E> KObservableMutableList<E>.observeValueAt(anIndex: Int): KBinding<E> = this.observeValueAt(anIndex.toObservableConst())

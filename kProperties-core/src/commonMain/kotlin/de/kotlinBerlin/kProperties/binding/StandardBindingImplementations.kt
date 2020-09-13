@@ -2,10 +2,7 @@ package de.kotlinBerlin.kProperties.binding
 
 import de.kotlinBerlin.kProperties.KInvalidationListener
 import de.kotlinBerlin.kProperties.WeakKInvalidationListener
-import de.kotlinBerlin.kProperties.collection.KObservableCollection
-import de.kotlinBerlin.kProperties.collection.KObservableList
-import de.kotlinBerlin.kProperties.collection.KObservableMap
-import de.kotlinBerlin.kProperties.collection.KObservableSet
+import de.kotlinBerlin.kProperties.collection.*
 import de.kotlinBerlin.kProperties.value.*
 
 internal open class BasicKBinding<out T>(private val func: () -> T) : KObjectBinding<T>() {
@@ -70,8 +67,8 @@ internal open class ComplexKBinding<T, out B>(
     }
 }
 
-internal open class BasicKCollectionBinding<E, C : KObservableCollection<E>?>(private val func: () -> C) :
-        BasicKObservableCollectionValue<E, C>(), KCollectionBinding<E, C> {
+internal open class BasicKMutableCollectionBinding<E, C : KObservableMutableCollection<E>?>(private val func: () -> C) :
+        BasicKObservableMutableCollectionValue<E, C>(), KMutableCollectionBinding<E, C> {
 
     final override var valid: Boolean = false
         private set
@@ -107,8 +104,8 @@ internal open class BasicKCollectionBinding<E, C : KObservableCollection<E>?>(pr
     }
 }
 
-internal open class BasicKListBinding<E, L : KObservableList<E>?>(private val func: () -> L) :
-        BasicKObservableListValue<E, L>(), KListBinding<E, L> {
+internal open class BasicKMutableListBinding<E, L : KObservableMutableList<E>?>(private val func: () -> L) :
+        BasicKObservableMutableListValue<E, L>(), KMutableListBinding<E, L> {
 
     final override var valid: Boolean = false
         private set
@@ -144,8 +141,8 @@ internal open class BasicKListBinding<E, L : KObservableList<E>?>(private val fu
     }
 }
 
-internal open class BasicKSetBinding<E, S : KObservableSet<E>?>(private val func: () -> S) :
-        BasicKObservableSetValue<E, S>(), KSetBinding<E, S> {
+internal open class BasicKMutableSetBinding<E, S : KObservableMutableSet<E>?>(private val func: () -> S) :
+        BasicKObservableMutableSetValue<E, S>(), KMutableSetBinding<E, S> {
 
     final override var valid: Boolean = false
         private set
@@ -181,8 +178,8 @@ internal open class BasicKSetBinding<E, S : KObservableSet<E>?>(private val func
     }
 }
 
-internal open class BasicKMapBinding<K, V, M : KObservableMap<K, V>?>(private val func: () -> M) :
-        BasicKObservableMapValue<K, V, M>(), KMapBinding<K, V, M> {
+internal open class BasicKMutableMapBinding<K, V, M : KObservableMutableMap<K, V>?>(private val func: () -> M) :
+        BasicKObservableMutableMapValue<K, V, M>(), KMutableMapBinding<K, V, M> {
 
     final override var valid: Boolean = false
         private set

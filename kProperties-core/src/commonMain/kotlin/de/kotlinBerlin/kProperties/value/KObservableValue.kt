@@ -32,10 +32,10 @@ import de.kotlinBerlin.kProperties.KObservable
  * @see KObservableShortValue
  * @see KObservableByteValue
  *
- * @see KObservableCollectionValue
- * @see KObservableListValue
- * @see KObservableSetValue
- * @see KObservableMapValue
+ * @see KObservableMutableCollectionValue
+ * @see KObservableMutableListValue
+ * @see KObservableMutableSetValue
+ * @see KObservableMutableMapValue
  */
 interface KObservableValue<out T> : KObservable {
 

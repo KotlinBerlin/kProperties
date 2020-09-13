@@ -1,20 +1,19 @@
 package de.kotlinBerlin.kProperties
 
 import de.kotlinBerlin.kProperties.collection.*
-import de.kotlinBerlin.kProperties.collection.KMapListener.Replacement
 import kotlin.collections.MutableMap.MutableEntry
 import kotlin.test.*
 
 class KObservableMapTest {
 
-    private lateinit var observableMap: KObservableMap<Int, String>
+    private lateinit var observableMutableMap: KObservableMutableMap<Int, String>
 
     @BeforeTest
     fun prepare() {
-        observableMap = observableMap()
-        observableMap[1] = "1"
-        observableMap[2] = "2"
-        observableMap[3] = "3"
+        observableMutableMap = observableMutableMap()
+        observableMutableMap[1] = "1"
+        observableMutableMap[2] = "2"
+        observableMutableMap[3] = "3"
     }
 
     @Test
@@ -22,8 +21,11 @@ class KObservableMapTest {
         var tempListenerCalledFlag = false
         var tempKeySetListenerCalledFlag = false
         var tempValueCollectionListenerCalledFlag = false
-        observableMap.addListener(object : KMapListener<Int, String> {
-            override fun onRemove(aMap: KObservableMap<Int, String>, aRemovedEntries: Collection<Pair<Int, String>>) {
+        observableMutableMap.addListener(object : KMutableMapListener<Int, String> {
+            override fun onRemove(
+                aMutableMap: KObservableMutableMap<Int, String>,
+                aRemovedEntries: Collection<Pair<Int, String>>
+            ) {
                 tempListenerCalledFlag = true
                 assertEquals(3, aRemovedEntries.size)
                 assertTrue { aRemovedEntries.any { it.first == 1 && it.second == "1" } }
@@ -32,7 +34,7 @@ class KObservableMapTest {
             }
         })
 
-        observableMap.keys.simpleObserveRemove { tempColl ->
+        observableMutableMap.keys.simpleObserveMutableRemove { tempColl ->
             tempKeySetListenerCalledFlag = true
             assertEquals(3, tempColl.size)
             assertTrue { tempColl.any { it == 1 } }
@@ -40,7 +42,7 @@ class KObservableMapTest {
             assertTrue { tempColl.any { it == 3 } }
         }
 
-        observableMap.values.simpleObserveRemove { tempColl ->
+        observableMutableMap.values.simpleObserveMutableRemove { tempColl ->
             tempValueCollectionListenerCalledFlag = true
             assertEquals(3, tempColl.size)
             assertTrue { tempColl.any { it == "1" } }
@@ -48,7 +50,7 @@ class KObservableMapTest {
             assertTrue { tempColl.any { it == "3" } }
         }
 
-        observableMap.clear()
+        observableMutableMap.clear()
         assertTrue { tempListenerCalledFlag }
         assertTrue { tempKeySetListenerCalledFlag }
         assertTrue { tempValueCollectionListenerCalledFlag }
@@ -57,8 +59,11 @@ class KObservableMapTest {
     @Test
     fun testClearEntrySet() {
         var tempListenerCalledFlag = false
-        observableMap.addListener(object : KMapListener<Int, String> {
-            override fun onRemove(aMap: KObservableMap<Int, String>, aRemovedEntries: Collection<Pair<Int, String>>) {
+        observableMutableMap.addListener(object : KMutableMapListener<Int, String> {
+            override fun onRemove(
+                aMutableMap: KObservableMutableMap<Int, String>,
+                aRemovedEntries: Collection<Pair<Int, String>>
+            ) {
                 tempListenerCalledFlag = true
                 assertEquals(3, aRemovedEntries.size)
                 assertTrue { aRemovedEntries.any { it.first == 1 && it.second == "1" } }
@@ -66,7 +71,7 @@ class KObservableMapTest {
                 assertTrue { aRemovedEntries.any { it.first == 3 && it.second == "3" } }
             }
         })
-        observableMap.entries.clear()
+        observableMutableMap.entries.clear()
         assertTrue { tempListenerCalledFlag }
     }
 
@@ -74,8 +79,11 @@ class KObservableMapTest {
     fun testClearKeySet() {
         var tempListenerCalledFlag = false
         var tempSetListenerCalledFlag = false
-        observableMap.addListener(object : KMapListener<Int, String> {
-            override fun onRemove(aMap: KObservableMap<Int, String>, aRemovedEntries: Collection<Pair<Int, String>>) {
+        observableMutableMap.addListener(object : KMutableMapListener<Int, String> {
+            override fun onRemove(
+                aMutableMap: KObservableMutableMap<Int, String>,
+                aRemovedEntries: Collection<Pair<Int, String>>
+            ) {
                 tempListenerCalledFlag = true
                 assertEquals(3, aRemovedEntries.size)
                 assertTrue { aRemovedEntries.any { it.first == 1 && it.second == "1" } }
@@ -83,9 +91,9 @@ class KObservableMapTest {
                 assertTrue { aRemovedEntries.any { it.first == 3 && it.second == "3" } }
             }
         })
-        val tempKeySet = observableMap.keys
-        tempKeySet.addListener(object : KSetListener<Int> {
-            override fun onRemove(aSet: KObservableSet<Int>, aRemovedList: Collection<Int>) {
+        val tempKeySet = observableMutableMap.keys
+        tempKeySet.addListener(object : KMutableSetListener<Int> {
+            override fun onRemove(aMutableSet: KObservableMutableSet<Int>, aRemovedList: Collection<Int>) {
                 tempSetListenerCalledFlag = true
                 assertEquals(3, aRemovedList.size)
                 assertTrue { aRemovedList.any { it == 1 } }
@@ -102,8 +110,11 @@ class KObservableMapTest {
     fun testClearValueCollection() {
         var tempListenerCalledFlag = false
         var tempSetListenerCalledFlag = false
-        observableMap.addListener(object : KMapListener<Int, String> {
-            override fun onRemove(aMap: KObservableMap<Int, String>, aRemovedEntries: Collection<Pair<Int, String>>) {
+        observableMutableMap.addListener(object : KMutableMapListener<Int, String> {
+            override fun onRemove(
+                aMutableMap: KObservableMutableMap<Int, String>,
+                aRemovedEntries: Collection<Pair<Int, String>>
+            ) {
                 tempListenerCalledFlag = true
                 assertEquals(3, aRemovedEntries.size)
                 assertTrue { aRemovedEntries.any { it.first == 1 && it.second == "1" } }
@@ -111,9 +122,9 @@ class KObservableMapTest {
                 assertTrue { aRemovedEntries.any { it.first == 3 && it.second == "3" } }
             }
         })
-        val tempValueCollection = observableMap.values
-        tempValueCollection.addListener(object : KCollectionListener<String> {
-            override fun onRemove(aCollection: KObservableCollection<String>, aRemovedList: Collection<String>) {
+        val tempValueCollection = observableMutableMap.values
+        tempValueCollection.addListener(object : KMutableCollectionListener<String> {
+            override fun onRemove(aMutableCollection: KObservableMutableCollection<String>, aRemovedList: Collection<String>) {
                 tempSetListenerCalledFlag = true
                 assertEquals(3, aRemovedList.size)
                 assertTrue { aRemovedList.any { it == "1" } }
@@ -132,8 +143,11 @@ class KObservableMapTest {
         var tempKeySetOnAddListenerCalledFlag = false
         var tempValuesCollOnAddListenerCalledFlag = false
         var tempOnReplaceListenerCalledFlag = false
-        observableMap.addListener(object : KMapListener<Int, String> {
-            override fun onAdd(aMap: KObservableMap<Int, String>, anAddedEntries: Collection<Pair<Int, String>>) {
+        observableMutableMap.addListener(object : KMutableMapListener<Int, String> {
+            override fun onAdd(
+                aMutableMap: KObservableMutableMap<Int, String>,
+                anAddedEntries: Collection<Pair<Int, String>>
+            ) {
                 tempOnAddListenerCalledFlag = true
                 assertEquals(1, anAddedEntries.size)
                 assertEquals(4, anAddedEntries.first().first)
@@ -141,26 +155,26 @@ class KObservableMapTest {
             }
 
             override fun onReplace(
-                    aMap: KObservableMap<Int, String>,
-                    aReplacedEntries: Collection<Replacement<Int, String>>
+                aMutableMap: KObservableMutableMap<Int, String>,
+                aReplacedEntries: Collection<MapReplacement<Int, String>>
             ) {
                 tempOnReplaceListenerCalledFlag = true
             }
         })
 
-        observableMap.keys.simpleObserveAdd {
+        observableMutableMap.keys.simpleObserveMutableAdd {
             tempKeySetOnAddListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals(4, it.first())
         }
 
-        observableMap.values.simpleObserveAdd {
+        observableMutableMap.values.simpleObserveMutableAdd {
             tempValuesCollOnAddListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals("4", it.first())
         }
 
-        observableMap[4] = "4"
+        observableMutableMap[4] = "4"
         assertTrue { tempOnAddListenerCalledFlag }
         assertTrue { tempKeySetOnAddListenerCalledFlag }
         assertTrue { tempValuesCollOnAddListenerCalledFlag }
@@ -173,14 +187,17 @@ class KObservableMapTest {
         var tempValuesCollOnAddListenerCalledFlag = false
         var tempValuesCollOnRemoveListenerCalledFlag = false
         var tempOnReplaceListenerCalledFlag = false
-        observableMap.addListener(object : KMapListener<Int, String> {
-            override fun onAdd(aMap: KObservableMap<Int, String>, anAddedEntries: Collection<Pair<Int, String>>) {
+        observableMutableMap.addListener(object : KMutableMapListener<Int, String> {
+            override fun onAdd(
+                aMutableMap: KObservableMutableMap<Int, String>,
+                anAddedEntries: Collection<Pair<Int, String>>
+            ) {
                 tempOnAddListenerCalledFlag = true
             }
 
             override fun onReplace(
-                    aMap: KObservableMap<Int, String>,
-                    aReplacedEntries: Collection<Replacement<Int, String>>
+                aMutableMap: KObservableMutableMap<Int, String>,
+                aReplacedEntries: Collection<MapReplacement<Int, String>>
             ) {
                 tempOnReplaceListenerCalledFlag = true
                 assertEquals(1, aReplacedEntries.size)
@@ -190,28 +207,28 @@ class KObservableMapTest {
             }
         })
 
-        observableMap.keys.simpleObserveAdd {
+        observableMutableMap.keys.simpleObserveMutableAdd {
             fail("KeySet should not be called with on add")
         }
-        observableMap.keys.simpleObserveRemove {
+        observableMutableMap.keys.simpleObserveMutableRemove {
             fail("KeySet should not be called with on remove")
         }
 
-        observableMap.values.simpleObserveRemove {
+        observableMutableMap.values.simpleObserveMutableRemove {
             assertFalse { tempValuesCollOnAddListenerCalledFlag }
             tempValuesCollOnRemoveListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals("1", it.first())
         }
 
-        observableMap.values.simpleObserveAdd {
+        observableMutableMap.values.simpleObserveMutableAdd {
             assertTrue { tempValuesCollOnRemoveListenerCalledFlag }
             tempValuesCollOnAddListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals("1A", it.first())
         }
 
-        observableMap[1] = "1A"
+        observableMutableMap[1] = "1A"
         assertFalse { tempOnAddListenerCalledFlag }
         assertTrue { tempOnReplaceListenerCalledFlag }
         assertTrue { tempValuesCollOnAddListenerCalledFlag }
@@ -226,8 +243,11 @@ class KObservableMapTest {
         var tempValuesCollOnAdd4ListenerCalledFlag = false
         var tempValuesCollOnAdd1AListenerCalledFlag = false
         var tempOnReplaceListenerCalledFlag = false
-        observableMap.addListener(object : KMapListener<Int, String> {
-            override fun onAdd(aMap: KObservableMap<Int, String>, anAddedEntries: Collection<Pair<Int, String>>) {
+        observableMutableMap.addListener(object : KMutableMapListener<Int, String> {
+            override fun onAdd(
+                aMutableMap: KObservableMutableMap<Int, String>,
+                anAddedEntries: Collection<Pair<Int, String>>
+            ) {
                 tempOnAddListenerCalledFlag = true
                 tempOnAddListenerCalledFlag = true
                 assertEquals(1, anAddedEntries.size)
@@ -236,8 +256,8 @@ class KObservableMapTest {
             }
 
             override fun onReplace(
-                    aMap: KObservableMap<Int, String>,
-                    aReplacedEntries: Collection<Replacement<Int, String>>
+                aMutableMap: KObservableMutableMap<Int, String>,
+                aReplacedEntries: Collection<MapReplacement<Int, String>>
             ) {
                 tempOnReplaceListenerCalledFlag = true
                 assertEquals(1, aReplacedEntries.size)
@@ -247,17 +267,17 @@ class KObservableMapTest {
             }
         })
 
-        observableMap.keys.simpleObserveRemove {
+        observableMutableMap.keys.simpleObserveMutableRemove {
             fail("KeySet should not be called with on remove")
         }
 
-        observableMap.keys.simpleObserveAdd {
+        observableMutableMap.keys.simpleObserveMutableAdd {
             tempKeySetOnAddListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals(4, it.first())
         }
 
-        observableMap.values.simpleObserveRemove {
+        observableMutableMap.values.simpleObserveMutableRemove {
             tempValuesCollOnRemoveListenerCalledFlag = true
             assertFalse { tempValuesCollOnAdd4ListenerCalledFlag }
             assertFalse { tempValuesCollOnAdd1AListenerCalledFlag }
@@ -265,7 +285,7 @@ class KObservableMapTest {
             assertEquals("1", it.first())
         }
 
-        observableMap.values.simpleObserveAdd {
+        observableMutableMap.values.simpleObserveMutableAdd {
             assertEquals(1, it.size)
             when {
                 it.first() == "1A" -> {
@@ -282,7 +302,7 @@ class KObservableMapTest {
             }
         }
 
-        observableMap.putAll(mapOf(4 to "4", 1 to "1A"))
+        observableMutableMap.putAll(mapOf(4 to "4", 1 to "1A"))
         assertTrue { tempOnAddListenerCalledFlag }
         assertTrue { tempOnReplaceListenerCalledFlag }
         assertTrue { tempKeySetOnAddListenerCalledFlag }
@@ -296,8 +316,11 @@ class KObservableMapTest {
         var tempOnRemoveListenerCalledFlag = false
         var tempKeySetOnRemoveListenerCalledFlag = false
         var tempValueCollOnRemoveListenerCalledFlag = false
-        observableMap.addListener(object : KMapListener<Int, String> {
-            override fun onRemove(aMap: KObservableMap<Int, String>, aRemovedEntries: Collection<Pair<Int, String>>) {
+        observableMutableMap.addListener(object : KMutableMapListener<Int, String> {
+            override fun onRemove(
+                aMutableMap: KObservableMutableMap<Int, String>,
+                aRemovedEntries: Collection<Pair<Int, String>>
+            ) {
                 tempOnRemoveListenerCalledFlag = true
                 assertEquals(1, aRemovedEntries.size)
                 assertEquals(1, aRemovedEntries.first().first)
@@ -305,19 +328,19 @@ class KObservableMapTest {
             }
         })
 
-        observableMap.keys.simpleObserveRemove {
+        observableMutableMap.keys.simpleObserveMutableRemove {
             tempKeySetOnRemoveListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals(1, it.first())
         }
 
-        observableMap.values.simpleObserveRemove {
+        observableMutableMap.values.simpleObserveMutableRemove {
             tempValueCollOnRemoveListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals("1", it.first())
         }
 
-        observableMap.remove(1)
+        observableMutableMap.remove(1)
 
         assertTrue { tempOnRemoveListenerCalledFlag }
         assertTrue { tempKeySetOnRemoveListenerCalledFlag }
@@ -329,8 +352,11 @@ class KObservableMapTest {
         var tempOnRemoveListenerCalledFlag = false
         var tempKeySetOnRemoveListenerCalledFlag = false
         var tempValueCollOnRemoveListenerCalledFlag = false
-        observableMap.addListener(object : KMapListener<Int, String> {
-            override fun onRemove(aMap: KObservableMap<Int, String>, aRemovedEntries: Collection<Pair<Int, String>>) {
+        observableMutableMap.addListener(object : KMutableMapListener<Int, String> {
+            override fun onRemove(
+                aMutableMap: KObservableMutableMap<Int, String>,
+                aRemovedEntries: Collection<Pair<Int, String>>
+            ) {
                 tempOnRemoveListenerCalledFlag = true
                 assertEquals(1, aRemovedEntries.size)
                 assertEquals(1, aRemovedEntries.first().first)
@@ -338,19 +364,19 @@ class KObservableMapTest {
             }
         })
 
-        observableMap.keys.simpleObserveRemove {
+        observableMutableMap.keys.simpleObserveMutableRemove {
             tempKeySetOnRemoveListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals(1, it.first())
         }
 
-        observableMap.values.simpleObserveRemove {
+        observableMutableMap.values.simpleObserveMutableRemove {
             tempValueCollOnRemoveListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals("1", it.first())
         }
 
-        observableMap.keys.remove(1)
+        observableMutableMap.keys.remove(1)
 
         assertTrue { tempOnRemoveListenerCalledFlag }
         assertTrue { tempKeySetOnRemoveListenerCalledFlag }
@@ -362,8 +388,11 @@ class KObservableMapTest {
         var tempOnRemoveListenerCalledFlag = false
         var tempKeySetOnRemoveListenerCalledFlag = false
         var tempValueCollOnRemoveListenerCalledFlag = false
-        observableMap.addListener(object : KMapListener<Int, String> {
-            override fun onRemove(aMap: KObservableMap<Int, String>, aRemovedEntries: Collection<Pair<Int, String>>) {
+        observableMutableMap.addListener(object : KMutableMapListener<Int, String> {
+            override fun onRemove(
+                aMutableMap: KObservableMutableMap<Int, String>,
+                aRemovedEntries: Collection<Pair<Int, String>>
+            ) {
                 tempOnRemoveListenerCalledFlag = true
                 assertEquals(1, aRemovedEntries.size)
                 assertEquals(1, aRemovedEntries.first().first)
@@ -371,19 +400,19 @@ class KObservableMapTest {
             }
         })
 
-        observableMap.keys.simpleObserveRemove {
+        observableMutableMap.keys.simpleObserveMutableRemove {
             tempKeySetOnRemoveListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals(1, it.first())
         }
 
-        observableMap.values.simpleObserveRemove {
+        observableMutableMap.values.simpleObserveMutableRemove {
             tempValueCollOnRemoveListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals("1", it.first())
         }
 
-        observableMap.values.remove("1")
+        observableMutableMap.values.remove("1")
 
         assertTrue { tempOnRemoveListenerCalledFlag }
         assertTrue { tempKeySetOnRemoveListenerCalledFlag }
@@ -395,8 +424,11 @@ class KObservableMapTest {
         var tempOnRemoveListenerCalledFlag = false
         var tempKeySetOnRemoveListenerCalledFlag = false
         var tempValueCollOnRemoveListenerCalledFlag = false
-        observableMap.addListener(object : KMapListener<Int, String> {
-            override fun onRemove(aMap: KObservableMap<Int, String>, aRemovedEntries: Collection<Pair<Int, String>>) {
+        observableMutableMap.addListener(object : KMutableMapListener<Int, String> {
+            override fun onRemove(
+                aMutableMap: KObservableMutableMap<Int, String>,
+                aRemovedEntries: Collection<Pair<Int, String>>
+            ) {
                 tempOnRemoveListenerCalledFlag = true
                 assertEquals(1, aRemovedEntries.size)
                 assertEquals(1, aRemovedEntries.first().first)
@@ -404,19 +436,19 @@ class KObservableMapTest {
             }
         })
 
-        observableMap.keys.simpleObserveRemove {
+        observableMutableMap.keys.simpleObserveMutableRemove {
             tempKeySetOnRemoveListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals(1, it.first())
         }
 
-        observableMap.values.simpleObserveRemove {
+        observableMutableMap.values.simpleObserveMutableRemove {
             tempValueCollOnRemoveListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals("1", it.first())
         }
 
-        observableMap.entries.remove(observableMap.entries.first())
+        observableMutableMap.entries.remove(observableMutableMap.entries.first())
 
         assertTrue { tempOnRemoveListenerCalledFlag }
         assertTrue { tempKeySetOnRemoveListenerCalledFlag }
@@ -426,15 +458,15 @@ class KObservableMapTest {
     @Test
     fun testKeySet() {
         try {
-            observableMap.keys.add(1)
+            observableMutableMap.keys.add(1)
             fail("Should not be able to add a key to the KeySet of a KObservableMap!")
         } catch (e: UnsupportedOperationException) {
             //Ignore as expected
         }
 
         //Remove concurrent
-        val tempIterator1 = observableMap.keys.iterator()
-        observableMap.remove(1)
+        val tempIterator1 = observableMutableMap.keys.iterator()
+        observableMutableMap.remove(1)
         try {
             tempIterator1.next()
             fail("Should throw ConcurrentModificationException!")
@@ -442,11 +474,11 @@ class KObservableMapTest {
             //Ignore as expected
         }
 
-        observableMap[1] = "1"
+        observableMutableMap[1] = "1"
 
         //Add concurrent
-        val tempIterator2 = observableMap.keys.iterator()
-        observableMap[100] = "100"
+        val tempIterator2 = observableMutableMap.keys.iterator()
+        observableMutableMap[100] = "100"
         try {
             tempIterator2.next()
             fail("Should throw ConcurrentModificationException!")
@@ -455,8 +487,8 @@ class KObservableMapTest {
         }
 
         //Replace concurrent
-        val tempIterator3 = observableMap.keys.iterator()
-        observableMap[1] = "2"
+        val tempIterator3 = observableMutableMap.keys.iterator()
+        observableMutableMap[1] = "2"
         tempIterator3.next()
     }
 
@@ -465,8 +497,11 @@ class KObservableMapTest {
         var tempOnRemoveListenerCalledFlag = false
         var tempKeySetOnRemoveListenerCalledFlag = false
         var tempValueCollOnRemoveListenerCalledFlag = false
-        observableMap.addListener(object : KMapListener<Int, String> {
-            override fun onRemove(aMap: KObservableMap<Int, String>, aRemovedEntries: Collection<Pair<Int, String>>) {
+        observableMutableMap.addListener(object : KMutableMapListener<Int, String> {
+            override fun onRemove(
+                aMutableMap: KObservableMutableMap<Int, String>,
+                aRemovedEntries: Collection<Pair<Int, String>>
+            ) {
                 tempOnRemoveListenerCalledFlag = true
                 assertEquals(1, aRemovedEntries.size)
                 assertEquals(1, aRemovedEntries.first().first)
@@ -474,19 +509,19 @@ class KObservableMapTest {
             }
         })
 
-        observableMap.keys.simpleObserveRemove {
+        observableMutableMap.keys.simpleObserveMutableRemove {
             tempKeySetOnRemoveListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals(1, it.first())
         }
 
-        observableMap.values.simpleObserveRemove {
+        observableMutableMap.values.simpleObserveMutableRemove {
             tempValueCollOnRemoveListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals("1", it.first())
         }
 
-        val tempIterator = observableMap.keys.iterator()
+        val tempIterator = observableMutableMap.keys.iterator()
         tempIterator.next()
         tempIterator.remove()
         tempIterator.next()
@@ -499,15 +534,15 @@ class KObservableMapTest {
     @Test
     fun testValuesColl() {
         try {
-            observableMap.values.add("1")
+            observableMutableMap.values.add("1")
             fail("Should not be able to add a key to the ValueCollection of a KObservableMap!")
         } catch (e: UnsupportedOperationException) {
             //Ignore as expected
         }
 
         //remove concurrent
-        val tempIterator1 = observableMap.values.iterator()
-        observableMap.remove(1)
+        val tempIterator1 = observableMutableMap.values.iterator()
+        observableMutableMap.remove(1)
         try {
             tempIterator1.next()
             fail("Should throw ConcurrentModificationException!")
@@ -515,11 +550,11 @@ class KObservableMapTest {
             //Ignore as expected
         }
 
-        observableMap[1] = "1"
+        observableMutableMap[1] = "1"
 
         //add concurrent
-        val tempIterator2 = observableMap.values.iterator()
-        observableMap[100] = "100"
+        val tempIterator2 = observableMutableMap.values.iterator()
+        observableMutableMap[100] = "100"
         try {
             tempIterator2.next()
             fail("Should throw ConcurrentModificationException!")
@@ -528,8 +563,8 @@ class KObservableMapTest {
         }
 
         //replace concurrent
-        val tempIterator3 = observableMap.values.iterator()
-        observableMap[1] = "2"
+        val tempIterator3 = observableMutableMap.values.iterator()
+        observableMutableMap[1] = "2"
         try {
             tempIterator3.next()
             fail("Should throw ConcurrentModificationException!")
@@ -543,8 +578,11 @@ class KObservableMapTest {
         var tempOnRemoveListenerCalledFlag = false
         var tempKeySetOnRemoveListenerCalledFlag = false
         var tempValueCollOnRemoveListenerCalledFlag = false
-        observableMap.addListener(object : KMapListener<Int, String> {
-            override fun onRemove(aMap: KObservableMap<Int, String>, aRemovedEntries: Collection<Pair<Int, String>>) {
+        observableMutableMap.addListener(object : KMutableMapListener<Int, String> {
+            override fun onRemove(
+                aMutableMap: KObservableMutableMap<Int, String>,
+                aRemovedEntries: Collection<Pair<Int, String>>
+            ) {
                 tempOnRemoveListenerCalledFlag = true
                 assertEquals(1, aRemovedEntries.size)
                 assertEquals(1, aRemovedEntries.first().first)
@@ -552,19 +590,19 @@ class KObservableMapTest {
             }
         })
 
-        observableMap.keys.simpleObserveRemove {
+        observableMutableMap.keys.simpleObserveMutableRemove {
             tempKeySetOnRemoveListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals(1, it.first())
         }
 
-        observableMap.values.simpleObserveRemove {
+        observableMutableMap.values.simpleObserveMutableRemove {
             tempValueCollOnRemoveListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals("1", it.first())
         }
 
-        val tempIterator = observableMap.values.iterator()
+        val tempIterator = observableMutableMap.values.iterator()
         tempIterator.next()
         tempIterator.remove()
         tempIterator.next()
@@ -576,16 +614,16 @@ class KObservableMapTest {
 
     @Test
     fun testEntriesSet() {
-        observableMap.entries.add(object : MutableEntry<Int, String> {
+        observableMutableMap.entries.add(object : MutableEntry<Int, String> {
             override val key: Int get() = 2000
             override val value: String get() = "2000"
             override fun setValue(newValue: String): String = throw UnsupportedOperationException()
         })
-        assertEquals("2000", observableMap[2000])
+        assertEquals("2000", observableMutableMap[2000])
 
         //remove concurrent
-        val tempIterator1 = observableMap.entries.iterator()
-        observableMap.remove(1)
+        val tempIterator1 = observableMutableMap.entries.iterator()
+        observableMutableMap.remove(1)
         try {
             tempIterator1.next()
             fail("Should throw ConcurrentModificationException!")
@@ -593,11 +631,11 @@ class KObservableMapTest {
             //Ignore as expected
         }
 
-        observableMap[1] = "1"
+        observableMutableMap[1] = "1"
 
         //add concurrent
-        val tempIterator2 = observableMap.entries.iterator()
-        observableMap[100] = "100"
+        val tempIterator2 = observableMutableMap.entries.iterator()
+        observableMutableMap[100] = "100"
         try {
             tempIterator2.next()
             fail("Should throw ConcurrentModificationException!")
@@ -606,8 +644,8 @@ class KObservableMapTest {
         }
 
         //replace concurrent
-        val tempIterator3 = observableMap.entries.iterator()
-        observableMap[1] = "2"
+        val tempIterator3 = observableMutableMap.entries.iterator()
+        observableMutableMap[1] = "2"
         try {
             tempIterator3.next()
             fail("Should throw ConcurrentModificationException!")
@@ -621,8 +659,11 @@ class KObservableMapTest {
         var tempOnRemoveListenerCalledFlag = false
         var tempKeySetOnRemoveListenerCalledFlag = false
         var tempValueCollOnRemoveListenerCalledFlag = false
-        observableMap.addListener(object : KMapListener<Int, String> {
-            override fun onRemove(aMap: KObservableMap<Int, String>, aRemovedEntries: Collection<Pair<Int, String>>) {
+        observableMutableMap.addListener(object : KMutableMapListener<Int, String> {
+            override fun onRemove(
+                aMutableMap: KObservableMutableMap<Int, String>,
+                aRemovedEntries: Collection<Pair<Int, String>>
+            ) {
                 tempOnRemoveListenerCalledFlag = true
                 assertEquals(1, aRemovedEntries.size)
                 assertEquals(1, aRemovedEntries.first().first)
@@ -630,19 +671,19 @@ class KObservableMapTest {
             }
         })
 
-        observableMap.keys.simpleObserveRemove {
+        observableMutableMap.keys.simpleObserveMutableRemove {
             tempKeySetOnRemoveListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals(1, it.first())
         }
 
-        observableMap.values.simpleObserveRemove {
+        observableMutableMap.values.simpleObserveMutableRemove {
             tempValueCollOnRemoveListenerCalledFlag = true
             assertEquals(1, it.size)
             assertEquals("1", it.first())
         }
 
-        val tempIterator = observableMap.entries.iterator()
+        val tempIterator = observableMutableMap.entries.iterator()
         tempIterator.next()
         tempIterator.remove()
         tempIterator.next()

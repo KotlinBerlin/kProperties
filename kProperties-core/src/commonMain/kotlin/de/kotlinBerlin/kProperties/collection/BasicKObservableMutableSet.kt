@@ -5,14 +5,18 @@ import de.kotlinBerlin.kProperties.util.createImmutableCollection
 import de.kotlinBerlin.kProperties.util.immutableCollectionOf
 import de.kotlinBerlin.kProperties.util.immutableListOf
 
-/** Basic implementation of the [KObservableSet] interface. */
-class BasicKObservableSet<E>(private val wrapped: MutableSet<E>) :
-        KObservableSet<E>,
-        MutableSet<E> by wrapped {
+/** Basic implementation of the [KObservableMutableSet] interface. */
+class BasicKObservableMutableSet<E>(private val wrapped: MutableSet<E>) :
+    KObservableMutableSet<E>,
+    MutableSet<E> by wrapped {
 
     private val listeners by lazy { mutableListOf<Any>() }
 
-    override fun addListener(aListener: KSetListener<E>) {
+    override fun addListener(aListener: KMutableSetListener<E>) {
+        listeners.add(aListener)
+    }
+
+    override fun addListener(aListener: KMutableCollectionListener<E>) {
         listeners.add(aListener)
     }
 
@@ -20,11 +24,23 @@ class BasicKObservableSet<E>(private val wrapped: MutableSet<E>) :
         listeners.add(aListener)
     }
 
-    override fun removeListener(aListener: KSetListener<E>) {
+    override fun addListener(aListener: KSetListener<E>) {
+        listeners.add(aListener)
+    }
+
+    override fun removeListener(aListener: KMutableSetListener<E>) {
+        listeners.remove(aListener)
+    }
+
+    override fun removeListener(aListener: KMutableCollectionListener<E>) {
         listeners.remove(aListener)
     }
 
     override fun removeListener(aListener: KCollectionListener<E>) {
+        listeners.remove(aListener)
+    }
+
+    override fun removeListener(aListener: KSetListener<E>) {
         listeners.remove(aListener)
     }
 
@@ -88,16 +104,26 @@ class BasicKObservableSet<E>(private val wrapped: MutableSet<E>) :
     }
 
     private fun onAdd(anAddedList: Collection<E>) {
-        performListeners(anAddedList, KSetListener<E>::onAdd, KCollectionListener<E>::onAdd, listeners)
+        performListeners(
+            anAddedList,
+            KSetListener<E>::onAdd, KMutableSetListener<E>::onAdd,
+            KCollectionListener<E>::onAdd, KMutableCollectionListener<E>::onAdd,
+            listeners
+        )
     }
 
     private fun onRemove(aRemovedList: Collection<E>) {
-        performListeners(aRemovedList, KSetListener<E>::onRemove, KCollectionListener<E>::onRemove, listeners)
+        performListeners(
+            aRemovedList,
+            KSetListener<E>::onRemove, KMutableSetListener<E>::onRemove,
+            KCollectionListener<E>::onRemove, KMutableCollectionListener<E>::onRemove,
+            listeners
+        )
     }
 
-    override fun iterator(): MutableIterator<E> = KObservableSetIterator()
+    override fun iterator(): MutableIterator<E> = KObservableMutableSetIterator()
 
-    private inner class KObservableSetIterator : MutableIterator<E>, KSetListener<E> {
+    private inner class KObservableMutableSetIterator : MutableIterator<E>, KMutableSetListener<E> {
 
         private val wrappedIterator = wrapped.iterator()
         private var valid: Boolean = true
@@ -105,12 +131,12 @@ class BasicKObservableSet<E>(private val wrapped: MutableSet<E>) :
         private var currentElement: E? = null
 
         init {
-            addListener(WeakKSetListener(this))
+            addListener(WeakKMutableSetListener(this))
         }
 
-        override fun onAdd(aSet: KObservableSet<E>, anAddedList: Collection<E>) = invalidate()
+        override fun onAdd(aMutableSet: KObservableMutableSet<E>, anAddedList: Collection<E>) = invalidate()
 
-        override fun onRemove(aSet: KObservableSet<E>, aRemovedList: Collection<E>) {
+        override fun onRemove(aMutableSet: KObservableMutableSet<E>, aRemovedList: Collection<E>) {
             if (!privateChanges.remove(aRemovedList)) invalidate()
         }
 
@@ -151,21 +177,25 @@ class BasicKObservableSet<E>(private val wrapped: MutableSet<E>) :
 }
 
 @Suppress("UNCHECKED_CAST")
-internal fun <T, E> KObservableSet<E>.performListeners(
-        aParameter: T,
-        aListAction: KSetListener<E>.(KObservableSet<E>, T) -> Unit,
-        aColAction: KCollectionListener<E>.(KObservableCollection<E>, T) -> Unit,
-        listeners: Collection<Any>
+internal fun <T, E> KObservableMutableSet<E>.performListeners(
+    aParameter: T,
+    aSetAction: KSetListener<E>.(KObservableSet<E>, T) -> Unit,
+    aMutableSetAction: KMutableSetListener<E>.(KObservableMutableSet<E>, T) -> Unit,
+    aColAction: KCollectionListener<E>.(KObservableCollection<E>, T) -> Unit,
+    aMutableColAction: KMutableCollectionListener<E>.(KObservableMutableCollection<E>, T) -> Unit,
+    listeners: Collection<Any>
 ) {
-    listeners.filter { it is KSetListener<*> || it is KCollectionListener<*> }
-            .forEach {
-                when (it) {
-                    is KSetListener<*> -> aListAction.invoke(it as KSetListener<E>, this, aParameter)
-                    is KCollectionListener<*> -> aColAction.invoke(
-                            it as KCollectionListener<E>,
-                            this,
-                            aParameter
-                    )
-                }
+    listeners.filter { it is KMutableSetListener<*> || it is KMutableCollectionListener<*> }
+        .forEach {
+            when (it) {
+                is KSetListener<*> -> aSetAction(it as KSetListener<E>, this, aParameter)
+                is KMutableSetListener<*> -> aMutableSetAction(it as KMutableSetListener<E>, this, aParameter)
+                is KCollectionListener<*> -> aColAction(it as KCollectionListener<E>, this, aParameter)
+                is KMutableCollectionListener<*> -> aMutableColAction(
+                    it as KMutableCollectionListener<E>,
+                    this,
+                    aParameter
+                )
             }
+        }
 }

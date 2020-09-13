@@ -1,16 +1,18 @@
 package de.kotlinBerlin.kProperties.collection
 
-import de.kotlinBerlin.kProperties.collection.KListListener.Permutation
-import de.kotlinBerlin.kProperties.collection.KListListener.Replacement
 import de.kotlinBerlin.kProperties.util.*
 
-/** Basic implementation of the [KObservableList] interface. */
-class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
-        KObservableList<E>, MutableList<E> by wrapped {
+/** Basic implementation of the [KObservableMutableList] interface. */
+class BasicKObservableMutableList<E>(private val wrapped: MutableList<E>) :
+    KObservableMutableList<E>, MutableList<E> by wrapped {
 
     private val listeners by lazy { mutableListOf<Any>() }
 
-    override fun addListener(aListener: KListListener<E>) {
+    override fun addListener(aListener: KMutableListListener<E>) {
+        listeners.add(aListener)
+    }
+
+    override fun addListener(aListener: KMutableCollectionListener<E>) {
         listeners.add(aListener)
     }
 
@@ -18,11 +20,23 @@ class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
         listeners.add(aListener)
     }
 
-    override fun removeListener(aListener: KListListener<E>) {
+    override fun addListener(aListener: KListListener<E>) {
+        listeners.add(aListener)
+    }
+
+    override fun removeListener(aListener: KMutableListListener<E>) {
+        listeners.remove(aListener)
+    }
+
+    override fun removeListener(aListener: KMutableCollectionListener<E>) {
         listeners.remove(aListener)
     }
 
     override fun removeListener(aListener: KCollectionListener<E>) {
+        listeners.remove(aListener)
+    }
+
+    override fun removeListener(aListener: KListListener<E>) {
         listeners.remove(aListener)
     }
 
@@ -51,9 +65,9 @@ class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
     override fun remove(element: E): Boolean {
         val tempIndex = wrapped.indexOf(element)
 
-        val tempList = createImmutableCollection<Permutation<E>> {
+        val tempList = createImmutableCollection<ListPermutation<E>> {
             for (i in tempIndex + 1 until wrapped.size) {
-                add(Permutation(wrapped[i], i, i - 1))
+                add(ListPermutation(wrapped[i], i, i - 1))
             }
         }
 
@@ -66,7 +80,7 @@ class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
     }
 
     override fun removeAll(elements: Collection<E>): Boolean {
-        val tempMoves = HashMap<E, Permutation<E>>()
+        val tempMoves = HashMap<E, ListPermutation<E>>()
         val tempRemoved = createImmutableCollection<E> {
             val tempIterator = wrapped.asReversed().iterator()
             while (tempIterator.hasNext()) {
@@ -90,7 +104,7 @@ class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
     }
 
     override fun retainAll(elements: Collection<E>): Boolean {
-        val tempMoves = HashMap<E, Permutation<E>>()
+        val tempMoves = HashMap<E, ListPermutation<E>>()
         val tempRemoved = createImmutableCollection<E> {
             val tempIterator = wrapped.asReversed().iterator()
             while (tempIterator.hasNext()) {
@@ -112,9 +126,9 @@ class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
     }
 
     override fun add(index: Int, element: E) {
-        val tempList = createImmutableCollection<Permutation<E>> {
+        val tempList = createImmutableCollection<ListPermutation<E>> {
             for (i in index until wrapped.size) {
-                add(Permutation(wrapped[i], i, i + 1))
+                add(ListPermutation(wrapped[i], i, i + 1))
             }
         }
         wrapped.add(index, element)
@@ -124,9 +138,9 @@ class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
     }
 
     override fun addAll(index: Int, elements: Collection<E>): Boolean {
-        val tempList = createImmutableCollection<Permutation<E>> {
+        val tempList = createImmutableCollection<ListPermutation<E>> {
             for (i in index until wrapped.size) {
-                add(Permutation(wrapped[i], i, i + elements.size))
+                add(ListPermutation(wrapped[i], i, i + elements.size))
             }
         }
         if (wrapped.addAll(index, elements)) {
@@ -138,9 +152,9 @@ class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
     }
 
     override fun removeAt(index: Int): E {
-        val tempList = createImmutableCollection<Permutation<E>> {
+        val tempList = createImmutableCollection<ListPermutation<E>> {
             for (i in index + 1 until wrapped.size) {
-                add(Permutation(wrapped[i], i, i - 1))
+                add(ListPermutation(wrapped[i], i, i - 1))
             }
         }
         val tempRemoved = wrapped.removeAt(index)
@@ -153,29 +167,43 @@ class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
 
     override fun set(index: Int, element: E): E {
         val tempElement = wrapped.set(index, element)
-        onReplace(immutableListOf(Replacement(tempElement, element, index)))
+        onReplace(immutableListOf(ListReplacement(tempElement, element, index)))
         return tempElement
     }
 
     private fun onAdd(anAddedList: Collection<E>) {
-        performListeners(anAddedList, KListListener<E>::onAdd, KCollectionListener<E>::onAdd, listeners)
+        performListeners(
+            anAddedList,
+            KListListener<E>::onAdd, KMutableListListener<E>::onAdd,
+            KCollectionListener<E>::onAdd, KMutableCollectionListener<E>::onAdd,
+            listeners
+        )
     }
 
     private fun onRemove(aRemovedList: Collection<E>) {
-        performListeners(aRemovedList, KListListener<E>::onRemove, KCollectionListener<E>::onRemove, listeners)
+        performListeners(
+            aRemovedList,
+            KListListener<E>::onRemove, KMutableListListener<E>::onRemove,
+            KCollectionListener<E>::onRemove, KMutableCollectionListener<E>::onRemove,
+            listeners
+        )
     }
 
-    private fun onMove(aPermutationList: Collection<Permutation<E>>) {
-        performListeners(aPermutationList, KListListener<E>::onMove, listeners = listeners)
+    private fun onMove(aPermutationList: Collection<ListPermutation<E>>) {
+        performListeners(
+            aPermutationList, KListListener<E>::onMove, KMutableListListener<E>::onMove, listeners = listeners
+        )
     }
 
-    private fun onReplace(aReplacementList: Collection<Replacement<E>>) {
-        performListeners(aReplacementList, KListListener<E>::onReplace, listeners = listeners)
+    private fun onReplace(aReplacementList: Collection<ListReplacement<E>>) {
+        performListeners(
+            aReplacementList, KListListener<E>::onReplace, KMutableListListener<E>::onReplace, listeners = listeners
+        )
     }
 
     private fun collectOrUpdatePermutations(
-            tempNext: E,
-            tempMoves: HashMap<E, Permutation<E>>
+        tempNext: E,
+        tempMoves: HashMap<E, ListPermutation<E>>
     ) {
         val tempIndex = wrapped.lastIndexOf(tempNext)
         for (i in tempIndex + 1 until wrapped.size) {
@@ -183,9 +211,9 @@ class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
             val tempPermutation = tempMoves[tempElement]
             if (tempPermutation != null) {
                 tempMoves[tempElement] =
-                        Permutation(tempElement, tempPermutation.oldIndex, tempPermutation.newIndex - 1)
+                    ListPermutation(tempElement, tempPermutation.oldIndex, tempPermutation.newIndex - 1)
             } else {
-                tempMoves[tempElement] = Permutation(tempElement, i, i - 1)
+                tempMoves[tempElement] = ListPermutation(tempElement, i, i - 1)
             }
         }
     }
@@ -195,9 +223,9 @@ class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
     override fun listIterator(): MutableListIterator<E> = listIterator(0)
 
     override fun listIterator(index: Int): MutableListIterator<E> =
-            KObservableListIterator(index)
+        KObservableMutableListIterator(index)
 
-    private inner class KObservableListIterator(anIndex: Int) : MutableListIterator<E>, KListListener<E> {
+    private inner class KObservableMutableListIterator(anIndex: Int) : MutableListIterator<E>, KMutableListListener<E> {
 
         private var nextIndex = anIndex
         private var lastIndex = -1
@@ -205,22 +233,25 @@ class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
         private val privateChanges = mutableListOf<Any>()
 
         init {
-            addListener(WeakKListListener(this))
+            addListener(WeakKMutableListListener(this))
         }
 
-        override fun onAdd(aList: KObservableList<E>, anAddedList: Collection<E>) {
+        override fun onAdd(aMutableList: KObservableMutableList<E>, anAddedList: Collection<E>) {
             if (!privateChanges.remove(anAddedList)) invalidate()
         }
 
-        override fun onRemove(aList: KObservableList<E>, aRemovedList: Collection<E>) {
+        override fun onRemove(aMutableList: KObservableMutableList<E>, aRemovedList: Collection<E>) {
             if (!privateChanges.remove(aRemovedList)) invalidate()
         }
 
-        override fun onMove(aList: KObservableList<E>, aPermutationList: Collection<Permutation<E>>) {
+        override fun onMove(aMutableList: KObservableMutableList<E>, aPermutationList: Collection<ListPermutation<E>>) {
             if (!privateChanges.remove(aPermutationList)) invalidate()
         }
 
-        override fun onReplace(aList: KObservableList<E>, aReplacementList: Collection<Replacement<E>>) {
+        override fun onReplace(
+            aMutableList: KObservableMutableList<E>,
+            aReplacementList: Collection<ListReplacement<E>>
+        ) {
             if (!privateChanges.remove(aReplacementList)) invalidate()
         }
 
@@ -295,17 +326,17 @@ class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
 
         private fun internalAdd(anIndex: Int, anElement: E) {
             val tempPermutationChangeList =
-                    createImmutableCollection<Permutation<E>> {
-                        for (i in anIndex until wrapped.size) {
-                            add(
-                                    Permutation(
-                                            wrapped[i],
-                                            i,
-                                            i + 1
-                                    )
+                createImmutableCollection<ListPermutation<E>> {
+                    for (i in anIndex until wrapped.size) {
+                        add(
+                            ListPermutation(
+                                wrapped[i],
+                                i,
+                                i + 1
                             )
-                        }
+                        )
                     }
+                }
 
             val tempAddChangeList = immutableListOf(anElement)
             wrapped.add(anIndex, anElement)
@@ -324,11 +355,11 @@ class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
         private fun internalSet(anIndex: Int, anElement: E) {
             val tempElement = wrapped.set(anIndex, anElement)
             val tempChangeList = immutableListOf(
-                    Replacement(
-                            tempElement,
-                            anElement,
-                            anIndex
-                    )
+                ListReplacement(
+                    tempElement,
+                    anElement,
+                    anIndex
+                )
             )
             try {
                 privateChanges.add(tempChangeList)
@@ -340,17 +371,17 @@ class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
 
         private fun internalRemove(anIndex: Int) {
             val tempPermutationChangeList =
-                    createImmutableCollection<Permutation<E>> {
-                        for (i in anIndex + 1 until wrapped.size) {
-                            add(
-                                    Permutation(
-                                            wrapped[i],
-                                            i,
-                                            i - 1
-                                    )
+                createImmutableCollection<ListPermutation<E>> {
+                    for (i in anIndex + 1 until wrapped.size) {
+                        add(
+                            ListPermutation(
+                                wrapped[i],
+                                i,
+                                i - 1
                             )
-                        }
+                        )
                     }
+                }
 
             val tempRemoved = wrapped.removeAt(anIndex)
             val tempRemovedChangeList = immutableListOf(tempRemoved)
@@ -369,21 +400,23 @@ class BasicKObservableList<E>(private val wrapped: MutableList<E>) :
 }
 
 @Suppress("UNCHECKED_CAST")
-internal fun <E, T> KObservableList<E>.performListeners(
-        aParameter: T,
-        aListAction: KListListener<E>.(KObservableList<E>, T) -> Unit,
-        aColAction: (KCollectionListener<E>.(KObservableCollection<E>, T) -> Unit)? = null,
-        listeners: Collection<Any>
+internal fun <E, T> KObservableMutableList<E>.performListeners(
+    aParameter: T,
+    aListAction: KListListener<E>.(KObservableList<E>, T) -> Unit,
+    aMutableListAction: KMutableListListener<E>.(KObservableMutableList<E>, T) -> Unit,
+    aColAction: (KCollectionListener<E>.(KObservableCollection<E>, T) -> Unit)? = null,
+    aMutableColAction: (KMutableCollectionListener<E>.(KObservableMutableCollection<E>, T) -> Unit)? = null,
+    listeners: Collection<Any>
 ) {
-    listeners.filter { it is KListListener<*> || it is KCollectionListener<*> }
-            .forEach {
-                when (it) {
-                    is KListListener<*> -> aListAction.invoke(it as KListListener<E>, this, aParameter)
-                    is KCollectionListener<*> -> aColAction?.invoke(
-                            it as KCollectionListener<E>,
-                            this,
-                            aParameter
-                    )
-                }
+    listeners.filter { it is KMutableListListener<*> || it is KMutableCollectionListener<*> }
+        .forEach {
+            when (it) {
+                is KListListener<*> -> aListAction(it as KListListener<E>, this, aParameter)
+                is KMutableListListener<*> -> aMutableListAction(it as KMutableListListener<E>, this, aParameter)
+                is KCollectionListener<*> -> aColAction?.invoke(it as KCollectionListener<E>, this, aParameter)
+                is KMutableCollectionListener<*> -> aMutableColAction?.invoke(
+                    it as KMutableCollectionListener<E>, this, aParameter
+                )
             }
+        }
 }

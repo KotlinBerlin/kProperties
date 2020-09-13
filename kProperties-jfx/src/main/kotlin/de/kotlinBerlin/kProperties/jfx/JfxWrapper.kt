@@ -9,9 +9,11 @@ import de.kotlinBerlin.kProperties.property.*
 import de.kotlinBerlin.kProperties.value.KChangeListener
 import de.kotlinBerlin.kProperties.value.KObservableValue
 import javafx.beans.InvalidationListener
+import javafx.beans.WeakInvalidationListener
 import javafx.beans.binding.ObjectBinding
 import javafx.beans.property.Property
 import javafx.beans.value.ChangeListener
+import javafx.beans.value.WeakChangeListener
 
 fun <V> Property<V?>.toKProperty(): KProperty<V?> = JfxKProperty(this, null)
 fun <V : Any> Property<V>.toSaveKProperty(defaultValue: V): KProperty<V> = JfxKProperty(this, defaultValue)
@@ -44,7 +46,7 @@ fun Property<Byte?>.toKProperty(): KByteProperty<Byte?> = JfxKByteProperty(this,
 fun Property<Byte>.toSaveKProperty(defaultValue: Byte = 0): KByteProperty<Byte> =
     JfxKByteProperty(this, defaultValue)
 
-open class JfxKProperty<V>(private val jfxProp: Property<V>, private val defaultValue: V) : KProperty<V> {
+private open class JfxKProperty<V>(private val jfxProp: Property<V>, private val defaultValue: V) : KProperty<V> {
     override val bean: Any? get() = jfxProp.bean
     override val name: String? get() = jfxProp.name
 
@@ -80,8 +82,8 @@ open class JfxKProperty<V>(private val jfxProp: Property<V>, private val default
     private val kChangeListener = arrayListOf<KChangeListener<V>>()
 
     init {
-        jfxProp.addListener(invalidationListener)
-        jfxProp.addListener(changeListener)
+        jfxProp.addListener(WeakInvalidationListener(invalidationListener))
+        jfxProp.addListener(WeakChangeListener(changeListener))
     }
 
     override fun addListener(aListener: KInvalidationListener) {
@@ -120,24 +122,30 @@ open class JfxKProperty<V>(private val jfxProp: Property<V>, private val default
     override fun unbindBidirectional(aProperty: KProperty<V>): Unit = unbindBidirectional(this, aProperty)
 }
 
-class JfxKBooleanProperty<B : Boolean?>(jfxProp: Property<B>, defaultValue: B) : JfxKProperty<B>(jfxProp, defaultValue),
+private class JfxKBooleanProperty<B : Boolean?>(jfxProp: Property<B>, defaultValue: B) :
+    JfxKProperty<B>(jfxProp, defaultValue),
     KBooleanProperty<B>
 
-class JfxKStringProperty<S : String?>(jfxProp: Property<S>, defaultValue: S) : JfxKProperty<S>(jfxProp, defaultValue),
+private class JfxKStringProperty<S : String?>(jfxProp: Property<S>, defaultValue: S) :
+    JfxKProperty<S>(jfxProp, defaultValue),
     KStringProperty<S>
 
-class JfxKDoubleProperty<D : Double?>(jfxProp: Property<D>, defaultValue: D) : JfxKProperty<D>(jfxProp, defaultValue),
+private class JfxKDoubleProperty<D : Double?>(jfxProp: Property<D>, defaultValue: D) :
+    JfxKProperty<D>(jfxProp, defaultValue),
     KDoubleProperty<D>
 
-class JfxKFloatProperty<F : Float?>(jfxProp: Property<F>, defaultValue: F) : JfxKProperty<F>(jfxProp, defaultValue),
+private class JfxKFloatProperty<F : Float?>(jfxProp: Property<F>, defaultValue: F) :
+    JfxKProperty<F>(jfxProp, defaultValue),
     KFloatProperty<F>
 
-class JfxKIntProperty<I : Int?>(jfxProp: Property<I>, defaultValue: I) : JfxKProperty<I>(jfxProp, defaultValue),
+private class JfxKIntProperty<I : Int?>(jfxProp: Property<I>, defaultValue: I) : JfxKProperty<I>(jfxProp, defaultValue),
     KIntProperty<I>
 
-class JfxKShortProperty<S : Short?>(jfxProp: Property<S>, defaultValue: S) : JfxKProperty<S>(jfxProp, defaultValue),
+private class JfxKShortProperty<S : Short?>(jfxProp: Property<S>, defaultValue: S) :
+    JfxKProperty<S>(jfxProp, defaultValue),
     KShortProperty<S>
 
-class JfxKByteProperty<B : Byte?>(jfxProp: Property<B>, defaultValue: B) : JfxKProperty<B>(jfxProp, defaultValue),
+private class JfxKByteProperty<B : Byte?>(jfxProp: Property<B>, defaultValue: B) :
+    JfxKProperty<B>(jfxProp, defaultValue),
     KByteProperty<B>
 

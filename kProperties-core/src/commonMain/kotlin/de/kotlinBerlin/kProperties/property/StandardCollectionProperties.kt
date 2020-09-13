@@ -4,33 +4,42 @@ package de.kotlinBerlin.kProperties.property
 
 import de.kotlinBerlin.kProperties.KInvalidationListener
 import de.kotlinBerlin.kProperties.WeakKInvalidationListener
-import de.kotlinBerlin.kProperties.collection.KObservableCollection
-import de.kotlinBerlin.kProperties.collection.KObservableList
-import de.kotlinBerlin.kProperties.collection.KObservableMap
-import de.kotlinBerlin.kProperties.collection.KObservableSet
+import de.kotlinBerlin.kProperties.collection.*
 import de.kotlinBerlin.kProperties.value.*
 import kotlin.properties.ReadOnlyProperty
 
 /** An [KProperty] wrapping a [KObservableCollection] value. */
 interface KCollectionProperty<E, C : KObservableCollection<E>?> : KProperty<C>, KObservableCollectionValue<E, C>
 
+/** An [KProperty] wrapping a [KObservableMutableCollection] value. */
+interface KMutableCollectionProperty<E, C : KObservableMutableCollection<E>?> : KCollectionProperty<E, C>,
+    KObservableMutableCollectionValue<E, C>
+
 /** An [KProperty] wrapping a [KObservableList] value. */
 interface KListProperty<E, L : KObservableList<E>?> : KProperty<L>, KObservableListValue<E, L>
 
-/** An [KProperty] wrapping a [KObservableSet] value. */
-interface KSetProperty<E, S : KObservableSet<E>?> : KProperty<S>, KObservableSetValue<E, S>
+/** An [KProperty] wrapping a [KObservableMutableList] value. */
+interface KMutableListProperty<E, L : KObservableMutableList<E>?> : KListProperty<E, L>,
+    KObservableMutableListValue<E, L>
+
+/** An [KProperty] wrapping a [KObservableMutableSet] value. */
+interface KMutableSetProperty<E, S : KObservableMutableSet<E>?> : KProperty<S>, KObservableMutableSetValue<E, S>
 
 /** An [KProperty] wrapping a [KObservableMap] value. */
 interface KMapProperty<K, V, M : KObservableMap<K, V>?> : KProperty<M>, KObservableMapValue<K, V, M>
 
+/** An [KProperty] wrapping a [KObservableMutableMap] value. */
+interface KMutableMapProperty<K, V, M : KObservableMutableMap<K, V>?> : KMapProperty<K, V, M>,
+    KObservableMutableMapValue<K, V, M>
+
 private const val BOUND_ERROR_MESSAGE = "A bound value can not be set!"
 
-/** An [KProperty] implementation for [KObservableCollection] objects. */
-open class BasicKCollectionProperty<E, C : KObservableCollection<E>?>(
-        override val bean: Any?,
-        override val name: String?,
-        aValue: C
-) : BasicKObservableCollectionValue<E, C>(), KCollectionProperty<E, C> {
+/** An [KProperty] implementation for [KObservableMutableCollection] objects. */
+open class BasicKMutableCollectionProperty<E, C : KObservableMutableCollection<E>?>(
+    override val bean: Any?,
+    override val name: String?,
+    aValue: C
+) : BasicKObservableMutableCollectionValue<E, C>(), KMutableCollectionProperty<E, C> {
 
     override var valid: Boolean = true
         protected set
@@ -59,7 +68,7 @@ open class BasicKCollectionProperty<E, C : KObservableCollection<E>?>(
 
     /**
      * May be overridden by subclasses to perform additional logic whenever the value of this
-     * [KCollectionProperty] gets invalid. It gets executed before any of the listeners are called.
+     * [KMutableCollectionProperty] gets invalid. It gets executed before any of the listeners are called.
      */
     protected open fun onInvalidating() {
         //Empty default implementation. Can be overridden to perform additional actions!
@@ -102,12 +111,12 @@ open class BasicKCollectionProperty<E, C : KObservableCollection<E>?>(
     }
 }
 
-/** An [KProperty] implementation for [KObservableList] objects. */
-open class BasicKListProperty<E, L : KObservableList<E>?>(
-        override val bean: Any?,
-        override val name: String?,
-        aValue: L
-) : BasicKObservableListValue<E, L>(), KListProperty<E, L> {
+/** An [KProperty] implementation for [KObservableMutableList] objects. */
+open class BasicKMutableListProperty<E, L : KObservableMutableList<E>?>(
+    override val bean: Any?,
+    override val name: String?,
+    aValue: L
+) : BasicKObservableMutableListValue<E, L>(), KMutableListProperty<E, L> {
 
     override var valid: Boolean = true
         protected set
@@ -136,7 +145,7 @@ open class BasicKListProperty<E, L : KObservableList<E>?>(
 
     /**
      * May be overridden by subclasses to perform additional logic whenever the value of this
-     * [KListProperty] gets invalid. It gets executed before any of the listeners are called.
+     * [KMutableListProperty] gets invalid. It gets executed before any of the listeners are called.
      */
     protected open fun onInvalidating() {
         //Empty default implementation. Can be overridden to perform additional actions!
@@ -179,12 +188,12 @@ open class BasicKListProperty<E, L : KObservableList<E>?>(
     }
 }
 
-/** An [KProperty] implementation for [KObservableSet] objects. */
-open class BasicKSetProperty<E, S : KObservableSet<E>?>(
-        override val bean: Any?,
-        override val name: String?,
-        aValue: S
-) : BasicKObservableSetValue<E, S>(), KSetProperty<E, S> {
+/** An [KProperty] implementation for [KObservableMutableSet] objects. */
+open class BasicKMutableSetProperty<E, S : KObservableMutableSet<E>?>(
+    override val bean: Any?,
+    override val name: String?,
+    aValue: S
+) : BasicKObservableMutableSetValue<E, S>(), KMutableSetProperty<E, S> {
 
     override var valid: Boolean = true
         protected set
@@ -213,7 +222,7 @@ open class BasicKSetProperty<E, S : KObservableSet<E>?>(
 
     /**
      * May be overridden by subclasses to perform additional logic whenever the value of this
-     * [KSetProperty] gets invalid. It gets executed before any of the listeners are called.
+     * [KMutableSetProperty] gets invalid. It gets executed before any of the listeners are called.
      */
     protected open fun onInvalidating() {
         //Empty default implementation. Can be overridden to perform additional actions!
@@ -256,12 +265,12 @@ open class BasicKSetProperty<E, S : KObservableSet<E>?>(
     }
 }
 
-/** An [KProperty] implementation for [KObservableMap] objects. */
-open class BasicKMapProperty<K, V, M : KObservableMap<K, V>?>(
-        override val bean: Any?,
-        override val name: String?,
-        aValue: M
-) : BasicKObservableMapValue<K, V, M>(), KMapProperty<K, V, M> {
+/** An [KProperty] implementation for [KObservableMutableMap] objects. */
+open class BasicKMutableMapProperty<K, V, M : KObservableMutableMap<K, V>?>(
+    override val bean: Any?,
+    override val name: String?,
+    aValue: M
+) : BasicKObservableMutableMapValue<K, V, M>(), KMutableMapProperty<K, V, M> {
 
     override var valid: Boolean = true
         protected set
@@ -290,7 +299,7 @@ open class BasicKMapProperty<K, V, M : KObservableMap<K, V>?>(
 
     /**
      * May be overridden by subclasses to perform additional logic whenever the value of this
-     * [KMapProperty] gets invalid. It gets executed before any of the listeners are called.
+     * [KMutableMapProperty] gets invalid. It gets executed before any of the listeners are called.
      */
     protected open fun onInvalidating() {
         //Empty default implementation. Can be overridden to perform additional actions!
@@ -334,37 +343,37 @@ open class BasicKMapProperty<K, V, M : KObservableMap<K, V>?>(
 }
 
 /**
- *  A lazily created [KCollectionProperty] instance, that automatically retrieves information about the [KProperty.bean]
+ *  A lazily created [KMutableCollectionProperty] instance, that automatically retrieves information about the [KProperty.bean]
  *  and the [KProperty.name] properties.
  */
-inline fun <E, C : KObservableCollection<E>?> lazyCollectionProperty(crossinline initializer: () -> C): ReadOnlyProperty<Any?, KCollectionProperty<E, C>> =
-        LazyPropertyImpl { anOwner, aProperty ->
-            BasicKCollectionProperty(anOwner, aProperty.name, initializer.invoke())
-        }
+inline fun <E, C : KObservableMutableCollection<E>?> lazyCollectionProperty(crossinline initializer: () -> C): ReadOnlyProperty<Any?, KMutableCollectionProperty<E, C>> =
+    LazyPropertyImpl { anOwner, aProperty ->
+        BasicKMutableCollectionProperty(anOwner, aProperty.name, initializer.invoke())
+    }
 
 /**
- *  A lazily created [KListProperty] instance, that automatically retrieves information about the [KProperty.bean]
+ *  A lazily created [KMutableListProperty] instance, that automatically retrieves information about the [KProperty.bean]
  *  and the [KProperty.name] properties.
  */
-inline fun <E, L : KObservableList<E>?> lazyListProperty(crossinline initializer: () -> L): ReadOnlyProperty<Any?, KListProperty<E, L>> =
-        LazyPropertyImpl { anOwner, aProperty ->
-            BasicKListProperty(anOwner, aProperty.name, initializer.invoke())
-        }
+inline fun <E, L : KObservableMutableList<E>?> lazyListProperty(crossinline initializer: () -> L): ReadOnlyProperty<Any?, KMutableListProperty<E, L>> =
+    LazyPropertyImpl { anOwner, aProperty ->
+        BasicKMutableListProperty(anOwner, aProperty.name, initializer.invoke())
+    }
 
 /**
- *  A lazily created [KSetProperty] instance, that automatically retrieves information about the [KProperty.bean]
+ *  A lazily created [KMutableSetProperty] instance, that automatically retrieves information about the [KProperty.bean]
  *  and the [KProperty.name] properties.
  */
-inline fun <E, S : KObservableSet<E>?> lazySetProperty(crossinline initializer: () -> S): ReadOnlyProperty<Any?, KSetProperty<E, S>> =
-        LazyPropertyImpl { anOwner, aProperty ->
-            BasicKSetProperty(anOwner, aProperty.name, initializer.invoke())
-        }
+inline fun <E, S : KObservableMutableSet<E>?> lazySetProperty(crossinline initializer: () -> S): ReadOnlyProperty<Any?, KMutableSetProperty<E, S>> =
+    LazyPropertyImpl { anOwner, aProperty ->
+        BasicKMutableSetProperty(anOwner, aProperty.name, initializer.invoke())
+    }
 
 /**
- *  A lazily created [KMapProperty] instance, that automatically retrieves information about the [KProperty.bean]
+ *  A lazily created [KMutableMapProperty] instance, that automatically retrieves information about the [KProperty.bean]
  *  and the [KProperty.name] properties.
  */
-inline fun <K, V, M : KObservableMap<K, V>> lazyMapProperty(crossinline initializer: () -> M): ReadOnlyProperty<Any?, KMapProperty<K, V, M>> =
-        LazyPropertyImpl { anOwner, aProperty ->
-            BasicKMapProperty(anOwner, aProperty.name, initializer.invoke())
-        }
+inline fun <K, V, M : KObservableMutableMap<K, V>> lazyMapProperty(crossinline initializer: () -> M): ReadOnlyProperty<Any?, KMutableMapProperty<K, V, M>> =
+    LazyPropertyImpl { anOwner, aProperty ->
+        BasicKMutableMapProperty(anOwner, aProperty.name, initializer.invoke())
+    }

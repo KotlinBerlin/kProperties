@@ -2,72 +2,74 @@
 
 package de.kotlinBerlin.kProperties.wrapper
 
-import de.kotlinBerlin.kProperties.collection.KObservableCollection
-import de.kotlinBerlin.kProperties.collection.KObservableList
-import de.kotlinBerlin.kProperties.collection.KObservableMap
-import de.kotlinBerlin.kProperties.collection.KObservableSet
+import de.kotlinBerlin.kProperties.collection.KObservableMutableCollection
+import de.kotlinBerlin.kProperties.collection.KObservableMutableList
+import de.kotlinBerlin.kProperties.collection.KObservableMutableMap
+import de.kotlinBerlin.kProperties.collection.KObservableMutableSet
 import de.kotlinBerlin.kProperties.property.*
-import de.kotlinBerlin.kProperties.value.KObservableCollectionValue
-import de.kotlinBerlin.kProperties.value.KObservableListValue
-import de.kotlinBerlin.kProperties.value.KObservableMapValue
-import de.kotlinBerlin.kProperties.value.KObservableSetValue
+import de.kotlinBerlin.kProperties.value.KObservableMutableCollectionValue
+import de.kotlinBerlin.kProperties.value.KObservableMutableListValue
+import de.kotlinBerlin.kProperties.value.KObservableMutableMapValue
+import de.kotlinBerlin.kProperties.value.KObservableMutableSetValue
 
 /**
- * Basic [KWrapper] implementation for [KObservableCollection] objects
+ * Basic [KWrapper] implementation for [KObservableMutableCollection] objects
  */
-open class BasicKCollectionWrapper<E, C : KObservableCollection<E>?>(bean: Any?, name: String?, aValue: C) :
-        BasicKCollectionProperty<E, C>(bean, name, aValue), KWrapper<C> {
-    override val readOnlyProperty: KReadOnlyCollectionProperty<E, C> by lazy {
-        object : KReadOnlyCollectionProperty<E, C>, KObservableCollectionValue<E, C> by this {
+open class BasicKMutableCollectionWrapper<E, C : KObservableMutableCollection<E>?>(
+    bean: Any?, name: String?, aValue: C
+) :
+    BasicKMutableCollectionProperty<E, C>(bean, name, aValue), KWrapper<C> {
+    override val readOnlyProperty: KReadOnlyMutableCollectionProperty<E, C> by lazy {
+        object : KReadOnlyMutableCollectionProperty<E, C>, KObservableMutableCollectionValue<E, C> by this {
             override val bean: Any?
-                get() = this@BasicKCollectionWrapper.bean
+                get() = this@BasicKMutableCollectionWrapper.bean
             override val name: String?
-                get() = this@BasicKCollectionWrapper.name
+                get() = this@BasicKMutableCollectionWrapper.name
         }
     }
 }
 
 /**
- * Basic [KWrapper] implementation for [KObservableList] objects
+ * Basic [KWrapper] implementation for [KObservableMutableList] objects
  */
-open class BasicKListWrapper<E, L : KObservableList<E>?>(bean: Any?, name: String?, aValue: L) :
-        BasicKListProperty<E, L>(bean, name, aValue), KWrapper<L> {
-    override val readOnlyProperty: KReadOnlyListProperty<E, L> by lazy {
-        object : KReadOnlyListProperty<E, L>, KObservableListValue<E, L> by this {
+open class BasicKMutableListWrapper<E, L : KObservableMutableList<E>?>(bean: Any?, name: String?, aValue: L) :
+    BasicKMutableListProperty<E, L>(bean, name, aValue), KWrapper<L> {
+    override val readOnlyProperty: KReadOnlyMutableListProperty<E, L> by lazy {
+        object : KReadOnlyMutableListProperty<E, L>, KObservableMutableListValue<E, L> by this {
             override val bean: Any?
-                get() = this@BasicKListWrapper.bean
+                get() = this@BasicKMutableListWrapper.bean
             override val name: String?
-                get() = this@BasicKListWrapper.name
+                get() = this@BasicKMutableListWrapper.name
         }
     }
 }
 
 /**
- * Basic [KWrapper] implementation for [KObservableSet] objects
+ * Basic [KWrapper] implementation for [KObservableMutableSet] objects
  */
-open class BasicKSetWrapper<E, S : KObservableSet<E>?>(bean: Any?, name: String?, aValue: S) :
-        BasicKSetProperty<E, S>(bean, name, aValue), KWrapper<S> {
-    override val readOnlyProperty: KReadOnlySetProperty<E, S> by lazy {
-        object : KReadOnlySetProperty<E, S>, KObservableSetValue<E, S> by this {
+open class BasicKMutableSetWrapper<E, S : KObservableMutableSet<E>?>(bean: Any?, name: String?, aValue: S) :
+    BasicKMutableSetProperty<E, S>(bean, name, aValue), KWrapper<S> {
+    override val readOnlyProperty: KReadOnlyMutableSetProperty<E, S> by lazy {
+        object : KReadOnlyMutableSetProperty<E, S>, KObservableMutableSetValue<E, S> by this {
             override val bean: Any?
-                get() = this@BasicKSetWrapper.bean
+                get() = this@BasicKMutableSetWrapper.bean
             override val name: String?
-                get() = this@BasicKSetWrapper.name
+                get() = this@BasicKMutableSetWrapper.name
         }
     }
 }
 
 /**
- * Basic [KWrapper] implementation for [KObservableMap] objects
+ * Basic [KWrapper] implementation for [KObservableMutableMap] objects
  */
-open class BasicKMapWrapper<K, V, M : KObservableMap<K, V>?>(bean: Any?, name: String?, aValue: M) :
-        BasicKMapProperty<K, V, M>(bean, name, aValue), KWrapper<M> {
-    override val readOnlyProperty: KReadOnlyMapProperty<K, V, M> by lazy {
-        object : KReadOnlyMapProperty<K, V, M>, KObservableMapValue<K, V, M> by this {
+open class BasicKMutableMapWrapper<K, V, M : KObservableMutableMap<K, V>?>(bean: Any?, name: String?, aValue: M) :
+    BasicKMutableMapProperty<K, V, M>(bean, name, aValue), KWrapper<M> {
+    override val readOnlyProperty: KReadOnlyMutableMapProperty<K, V, M> by lazy {
+        object : KReadOnlyMutableMapProperty<K, V, M>, KObservableMutableMapValue<K, V, M> by this {
             override val bean: Any?
-                get() = this@BasicKMapWrapper.bean
+                get() = this@BasicKMutableMapWrapper.bean
             override val name: String?
-                get() = this@BasicKMapWrapper.name
+                get() = this@BasicKMutableMapWrapper.name
         }
     }
 }

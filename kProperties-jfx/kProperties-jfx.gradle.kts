@@ -3,6 +3,15 @@ plugins {
     `maven-publish`
 }
 
+val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
+compileKotlin.kotlinOptions {
+    jvmTarget = "11"
+}
+val compileTestKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
+compileTestKotlin.kotlinOptions {
+    jvmTarget = "11"
+}
+
 val jfxVersion = 15
 
 dependencies {

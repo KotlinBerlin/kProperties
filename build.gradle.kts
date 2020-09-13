@@ -6,5 +6,5 @@ allprojects {
     }
 
     group = "de.kotlin-berlin"
-    version = "3.0-FINAL"
+    version = "4.0-FINAL"
 }
