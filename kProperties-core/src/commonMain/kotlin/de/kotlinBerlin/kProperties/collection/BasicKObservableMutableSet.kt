@@ -185,17 +185,16 @@ internal fun <T, E> KObservableMutableSet<E>.performListeners(
     aMutableColAction: KMutableCollectionListener<E>.(KObservableMutableCollection<E>, T) -> Unit,
     listeners: Collection<Any>
 ) {
-    listeners.filter { it is KMutableSetListener<*> || it is KMutableCollectionListener<*> }
-        .forEach {
-            when (it) {
-                is KSetListener<*> -> aSetAction(it as KSetListener<E>, this, aParameter)
-                is KMutableSetListener<*> -> aMutableSetAction(it as KMutableSetListener<E>, this, aParameter)
-                is KCollectionListener<*> -> aColAction(it as KCollectionListener<E>, this, aParameter)
-                is KMutableCollectionListener<*> -> aMutableColAction(
-                    it as KMutableCollectionListener<E>,
-                    this,
-                    aParameter
-                )
-            }
+    listeners.forEach {
+        when (it) {
+            is KSetListener<*> -> aSetAction(it as KSetListener<E>, this, aParameter)
+            is KMutableSetListener<*> -> aMutableSetAction(it as KMutableSetListener<E>, this, aParameter)
+            is KCollectionListener<*> -> aColAction(it as KCollectionListener<E>, this, aParameter)
+            is KMutableCollectionListener<*> -> aMutableColAction(
+                it as KMutableCollectionListener<E>,
+                this,
+                aParameter
+            )
         }
+    }
 }

@@ -27,7 +27,7 @@ private class JfxKObservableMutableList<V>(private val jfxList: ObservableList<V
             when {
                 it.wasPermutated() -> handlePermutation(it.from, it.to)
                 it.wasReplaced() -> handleReplacement(it.addedSubList, it.removed)
-                it.wasAdded() -> handleAdd(it.addedSubList)
+                it.wasAdded() -> handleAdd(it.from, it.addedSubList)
                 it.wasRemoved() -> handleRemove(it.removed)
             }
         }
@@ -54,11 +54,11 @@ private class JfxKObservableMutableList<V>(private val jfxList: ObservableList<V
         mutableListListener.forEach { it.onRemove(this, removed) }
     }
 
-    private fun handleAdd(added: List<V>) {
+    private fun handleAdd(aStartIndex: Int, added: List<V>) {
         collectionListener.forEach { it.onAdd(this, added) }
         mutableCollectionListener.forEach { it.onAdd(this, added) }
-        listListener.forEach { it.onAdd(this, added) }
-        mutableListListener.forEach { it.onAdd(this, added) }
+        listListener.forEach { it.onAdd(this, aStartIndex, added) }
+        mutableListListener.forEach { it.onAdd(this, aStartIndex, added) }
     }
 
     init {

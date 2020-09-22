@@ -245,17 +245,16 @@ class BasicKObservableMutableMap<K, V>(private val wrapped: MutableMap<K, V>) :
             aColAction: KCollectionListener<K>.(KObservableCollection<K>, T) -> Unit,
             aMutableColAction: KMutableCollectionListener<K>.(KObservableMutableCollection<K>, T) -> Unit
         ) {
-            keySetListeners.filter { it is KMutableSetListener<*> || it is KMutableCollectionListener<*> }
-                .forEach {
-                    when (it) {
-                        is KSetListener<*> -> aSetAction(it as KSetListener<K>, this, aParameter)
-                        is KMutableSetListener<*> -> aMutableSetAction(it as KMutableSetListener<K>, this, aParameter)
-                        is KCollectionListener<*> -> aColAction(it as KCollectionListener<K>, this, aParameter)
-                        is KMutableCollectionListener<*> -> aMutableColAction(
-                            it as KMutableCollectionListener<K>, this, aParameter
-                        )
-                    }
+            keySetListeners.forEach {
+                when (it) {
+                    is KSetListener<*> -> aSetAction(it as KSetListener<K>, this, aParameter)
+                    is KMutableSetListener<*> -> aMutableSetAction(it as KMutableSetListener<K>, this, aParameter)
+                    is KCollectionListener<*> -> aColAction(it as KCollectionListener<K>, this, aParameter)
+                    is KMutableCollectionListener<*> -> aMutableColAction(
+                        it as KMutableCollectionListener<K>, this, aParameter
+                    )
                 }
+            }
         }
     }
 

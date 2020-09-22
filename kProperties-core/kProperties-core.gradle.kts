@@ -12,7 +12,6 @@ kotlin {
         }
     }
     js {
-        browser()
         nodejs()
     }
     mingwX64()

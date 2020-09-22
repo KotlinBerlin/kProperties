@@ -84,7 +84,7 @@ inline fun <E> KObservableMutableCollection<E>.simpleObserveMutableRemove(crossi
  */
 inline fun <E> KObservableList<E>.observeListAdd(crossinline aCallback: (KObservableList<E>, Collection<E>) -> Unit): KListListener<E> {
     val tempListener = object : KListListener<E> {
-        override fun onAdd(aList: KObservableList<E>, anAddedList: Collection<E>) {
+        override fun onAdd(aList: KObservableList<E>, aStartIndex: Int, anAddedList: Collection<E>) {
             aCallback.invoke(aList, anAddedList)
         }
     }
@@ -143,7 +143,7 @@ inline fun <E> KObservableList<E>.observeListRemove(crossinline aCallback: (KObs
  */
 inline fun <E> KObservableMutableList<E>.observeMutableListAdd(crossinline aCallback: (KObservableMutableList<E>, Collection<E>) -> Unit): KMutableListListener<E> {
     val tempListener = object : KMutableListListener<E> {
-        override fun onAdd(aMutableList: KObservableMutableList<E>, anAddedList: Collection<E>) {
+        override fun onAdd(aMutableList: KObservableMutableList<E>, aStartIndex: Int, anAddedList: Collection<E>) {
             aCallback.invoke(aMutableList, anAddedList)
         }
     }

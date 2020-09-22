@@ -12,8 +12,8 @@ class WeakKListListener<E>(aListener: KListListener<E>) : KListListener<E> {
 
     private val listenerRef = WeakReference(aListener)
 
-    override fun onAdd(aList: KObservableList<E>, anAddedList: Collection<E>) {
-        performIfAvailable(aList, anAddedList, KListListener<E>::onAdd)
+    override fun onAdd(aList: KObservableList<E>, aStartIndex: Int, anAddedList: Collection<E>) {
+        performIfAvailable(aStartIndex, aList, anAddedList, KListListener<E>::onAdd)
     }
 
     override fun onRemove(aList: KObservableList<E>, aRemovedList: Collection<E>) {
@@ -39,6 +39,19 @@ class WeakKListListener<E>(aListener: KListListener<E>) : KListListener<E> {
             aCollection.removeListener(this)
         }
     }
+
+    private inline fun <T> performIfAvailable(
+        aStartIndex: Int,
+        aCollection: KObservableList<E>, aParameter: T,
+        anAction: KListListener<E>.(KObservableList<E>, Int, T) -> Unit
+    ) {
+        val tempListener = listenerRef.wrapped
+        if (tempListener != null) {
+            tempListener.anAction(aCollection, aStartIndex, aParameter)
+        } else {
+            aCollection.removeListener(this)
+        }
+    }
 }
 
 /**
@@ -51,8 +64,8 @@ class WeakKMutableListListener<E>(aListener: KMutableListListener<E>) : KMutable
 
     private val listenerRef = WeakReference(aListener)
 
-    override fun onAdd(aMutableList: KObservableMutableList<E>, anAddedList: Collection<E>) {
-        performIfAvailable(aMutableList, anAddedList, KMutableListListener<E>::onAdd)
+    override fun onAdd(aMutableList: KObservableMutableList<E>, aStartIndex: Int, anAddedList: Collection<E>) {
+        performIfAvailable(aStartIndex, aMutableList, anAddedList, KMutableListListener<E>::onAdd)
     }
 
     override fun onRemove(aMutableList: KObservableMutableList<E>, aRemovedList: Collection<E>) {
@@ -74,6 +87,19 @@ class WeakKMutableListListener<E>(aListener: KMutableListListener<E>) : KMutable
         val tempListener = listenerRef.wrapped
         if (tempListener != null) {
             tempListener.anAction(aCollection, aParameter)
+        } else {
+            aCollection.removeListener(this)
+        }
+    }
+
+    private inline fun <T> performIfAvailable(
+        aStartIndex: Int,
+        aCollection: KObservableMutableList<E>, aParameter: T,
+        anAction: KMutableListListener<E>.(KObservableMutableList<E>, Int, T) -> Unit
+    ) {
+        val tempListener = listenerRef.wrapped
+        if (tempListener != null) {
+            tempListener.anAction(aCollection, aStartIndex, aParameter)
         } else {
             aCollection.removeListener(this)
         }

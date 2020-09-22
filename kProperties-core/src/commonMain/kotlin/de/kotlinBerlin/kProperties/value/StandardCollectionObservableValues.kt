@@ -228,11 +228,12 @@ abstract class BasicKObservableMutableListValue<E, L : KObservableMutableList<E>
         listeners.remove(aListener)
     }
 
-    override fun onAdd(aMutableList: KObservableMutableList<E>, anAddedList: Collection<E>) {
+    override fun onAdd(aMutableList: KObservableMutableList<E>, aStartIndex: Int, anAddedList: Collection<E>) {
         performListeners(
             anAddedList,
             KListListener<E>::onAdd, KMutableListListener<E>::onAdd,
             KCollectionListener<E>::onAdd, KMutableCollectionListener<E>::onAdd,
+            aStartIndex,
             listeners
         )
     }

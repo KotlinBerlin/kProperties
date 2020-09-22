@@ -1,6 +1,7 @@
 package de.kotlinBerlin.kProperties.collection
 
 import de.kotlinBerlin.kProperties.util.*
+import kotlin.math.max
 
 /** Basic implementation of the [KObservableMutableList] interface. */
 class BasicKObservableMutableList<E>(private val wrapped: MutableList<E>) :
@@ -42,7 +43,7 @@ class BasicKObservableMutableList<E>(private val wrapped: MutableList<E>) :
 
     override fun add(element: E): Boolean {
         if (wrapped.add(element)) {
-            onAdd(immutableListOf(element))
+            onAdd(max(wrapped.lastIndex - 1, 0), immutableListOf(element))
             return true
         }
         return false
@@ -50,7 +51,7 @@ class BasicKObservableMutableList<E>(private val wrapped: MutableList<E>) :
 
     override fun addAll(elements: Collection<E>): Boolean {
         if (wrapped.addAll(elements)) {
-            onAdd(elements.copyToImmutableCollection())
+            onAdd(max(wrapped.lastIndex - elements.size, 0), elements.copyToImmutableCollection())
             return true
         }
         return false
@@ -134,7 +135,7 @@ class BasicKObservableMutableList<E>(private val wrapped: MutableList<E>) :
         wrapped.add(index, element)
 
         if (tempList.isNotEmpty()) onMove(tempList)
-        onAdd(immutableListOf(element))
+        onAdd(index, immutableListOf(element))
     }
 
     override fun addAll(index: Int, elements: Collection<E>): Boolean {
@@ -145,7 +146,7 @@ class BasicKObservableMutableList<E>(private val wrapped: MutableList<E>) :
         }
         if (wrapped.addAll(index, elements)) {
             if (tempList.isNotEmpty()) onMove(tempList)
-            onAdd(elements.copyToImmutableCollection())
+            onAdd(index, elements.copyToImmutableCollection())
             return true
         }
         return false
@@ -171,11 +172,12 @@ class BasicKObservableMutableList<E>(private val wrapped: MutableList<E>) :
         return tempElement
     }
 
-    private fun onAdd(anAddedList: Collection<E>) {
+    private fun onAdd(aStartIndex: Int, anAddedList: Collection<E>) {
         performListeners(
             anAddedList,
             KListListener<E>::onAdd, KMutableListListener<E>::onAdd,
             KCollectionListener<E>::onAdd, KMutableCollectionListener<E>::onAdd,
+            aStartIndex,
             listeners
         )
     }
@@ -236,7 +238,7 @@ class BasicKObservableMutableList<E>(private val wrapped: MutableList<E>) :
             addListener(WeakKMutableListListener(this))
         }
 
-        override fun onAdd(aMutableList: KObservableMutableList<E>, anAddedList: Collection<E>) {
+        override fun onAdd(aMutableList: KObservableMutableList<E>, aStartIndex: Int, anAddedList: Collection<E>) {
             if (!privateChanges.remove(anAddedList)) invalidate()
         }
 
@@ -345,7 +347,7 @@ class BasicKObservableMutableList<E>(private val wrapped: MutableList<E>) :
                 privateChanges.add(tempPermutationChangeList)
                 privateChanges.add(tempAddChangeList)
                 if (tempPermutationChangeList.isNotEmpty()) onMove(tempPermutationChangeList)
-                onAdd(tempAddChangeList)
+                onAdd(anIndex, tempAddChangeList)
             } finally {
                 privateChanges.remove(tempPermutationChangeList)
                 privateChanges.remove(tempAddChangeList)
@@ -402,21 +404,45 @@ class BasicKObservableMutableList<E>(private val wrapped: MutableList<E>) :
 @Suppress("UNCHECKED_CAST")
 internal fun <E, T> KObservableMutableList<E>.performListeners(
     aParameter: T,
+    aListAction: KListListener<E>.(KObservableList<E>, Int, T) -> Unit,
+    aMutableListAction: KMutableListListener<E>.(KObservableMutableList<E>, Int, T) -> Unit,
+    aColAction: (KCollectionListener<E>.(KObservableCollection<E>, T) -> Unit)? = null,
+    aMutableColAction: (KMutableCollectionListener<E>.(KObservableMutableCollection<E>, T) -> Unit)? = null,
+    aStartIndex: Int,
+    listeners: Collection<Any>
+) {
+    listeners.forEach {
+        when (it) {
+            is KListListener<*> -> aListAction(it as KListListener<E>, this, aStartIndex, aParameter)
+            is KMutableListListener<*> -> aMutableListAction(
+                it as KMutableListListener<E>, this, aStartIndex,
+                aParameter
+            )
+            is KCollectionListener<*> -> aColAction?.invoke(it as KCollectionListener<E>, this, aParameter)
+            is KMutableCollectionListener<*> -> aMutableColAction?.invoke(
+                it as KMutableCollectionListener<E>, this, aParameter
+            )
+        }
+    }
+}
+
+@Suppress("UNCHECKED_CAST")
+internal fun <E, T> KObservableMutableList<E>.performListeners(
+    aParameter: T,
     aListAction: KListListener<E>.(KObservableList<E>, T) -> Unit,
     aMutableListAction: KMutableListListener<E>.(KObservableMutableList<E>, T) -> Unit,
     aColAction: (KCollectionListener<E>.(KObservableCollection<E>, T) -> Unit)? = null,
     aMutableColAction: (KMutableCollectionListener<E>.(KObservableMutableCollection<E>, T) -> Unit)? = null,
     listeners: Collection<Any>
 ) {
-    listeners.filter { it is KMutableListListener<*> || it is KMutableCollectionListener<*> }
-        .forEach {
-            when (it) {
-                is KListListener<*> -> aListAction(it as KListListener<E>, this, aParameter)
-                is KMutableListListener<*> -> aMutableListAction(it as KMutableListListener<E>, this, aParameter)
-                is KCollectionListener<*> -> aColAction?.invoke(it as KCollectionListener<E>, this, aParameter)
-                is KMutableCollectionListener<*> -> aMutableColAction?.invoke(
-                    it as KMutableCollectionListener<E>, this, aParameter
-                )
-            }
+    listeners.forEach {
+        when (it) {
+            is KListListener<*> -> aListAction(it as KListListener<E>, this, aParameter)
+            is KMutableListListener<*> -> aMutableListAction(it as KMutableListListener<E>, this, aParameter)
+            is KCollectionListener<*> -> aColAction?.invoke(it as KCollectionListener<E>, this, aParameter)
+            is KMutableCollectionListener<*> -> aMutableColAction?.invoke(
+                it as KMutableCollectionListener<E>, this, aParameter
+            )
         }
+    }
 }

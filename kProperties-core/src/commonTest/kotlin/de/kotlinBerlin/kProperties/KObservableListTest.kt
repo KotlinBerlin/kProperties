@@ -18,7 +18,7 @@ class KObservableListTest {
     fun testAdd() {
         var tempListenerCalledFlag = false
         observableMutableList.addListener(object : KMutableListListener<Int> {
-            override fun onAdd(aMutableList: KObservableMutableList<Int>, anAddedList: Collection<Int>) {
+            override fun onAdd(aMutableList: KObservableMutableList<Int>, aStartIndex: Int, anAddedList: Collection<Int>) {
                 tempListenerCalledFlag = true
                 assertTrue { anAddedList.size == 1 }
                 assertSame(anAddedList.first(), 3)
@@ -45,7 +45,7 @@ class KObservableListTest {
     fun testAddByIterator() {
         var tempListenerCalledFlag = false
         observableMutableList.addListener(object : KMutableListListener<Int> {
-            override fun onAdd(aMutableList: KObservableMutableList<Int>, anAddedList: Collection<Int>) {
+            override fun onAdd(aMutableList: KObservableMutableList<Int>, aStartIndex: Int, anAddedList: Collection<Int>) {
                 tempListenerCalledFlag = true
                 assertTrue { anAddedList.size == 1 }
                 assertSame(anAddedList.first(), 3)
@@ -61,7 +61,7 @@ class KObservableListTest {
     fun testAddAll() {
         var tempListenerCalledFlag = false
         observableMutableList.addListener(object : KMutableListListener<Int> {
-            override fun onAdd(aMutableList: KObservableMutableList<Int>, anAddedList: Collection<Int>) {
+            override fun onAdd(aMutableList: KObservableMutableList<Int>, aStartIndex: Int, anAddedList: Collection<Int>) {
                 tempListenerCalledFlag = true
                 assertTrue { anAddedList.size == 2 }
                 assertTrue { anAddedList.containsAll(listOf(3, 4)) }
@@ -211,7 +211,7 @@ class KObservableListTest {
         var tempOnMoveListenerCalledFlag = false
         var tempOnAddListenerCalledFlag = false
         observableMutableList.addListener(object : KMutableListListener<Int> {
-            override fun onAdd(aMutableList: KObservableMutableList<Int>, anAddedList: Collection<Int>) {
+            override fun onAdd(aMutableList: KObservableMutableList<Int>, aStartIndex: Int, anAddedList: Collection<Int>) {
                 tempOnAddListenerCalledFlag = true
                 assertTrue { anAddedList.size == 1 }
                 assertEquals(0, anAddedList.first())
@@ -240,7 +240,7 @@ class KObservableListTest {
         var tempOnMoveListenerCalledFlag = false
         var tempOnAddListenerCalledFlag = false
         observableMutableList.addListener(object : KMutableListListener<Int> {
-            override fun onAdd(aMutableList: KObservableMutableList<Int>, anAddedList: Collection<Int>) {
+            override fun onAdd(aMutableList: KObservableMutableList<Int>, aStartIndex: Int, anAddedList: Collection<Int>) {
                 tempOnAddListenerCalledFlag = true
                 assertTrue { anAddedList.size == 2 }
                 assertTrue { anAddedList.containsAll(arrayListOf(-1, 0)) }

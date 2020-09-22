@@ -31,7 +31,7 @@ data class ListReplacement<E>(
 interface KListListener<E> {
 
     /** This method gets called whenever elements are added to the [KObservableList] */
-    fun onAdd(aList: KObservableList<E>, anAddedList: Collection<E>) {
+    fun onAdd(aList: KObservableList<E>, aStartIndex: Int, anAddedList: Collection<E>) {
         //Can be overridden
     }
 
@@ -62,7 +62,7 @@ interface KListListener<E> {
 interface KMutableListListener<E> {
 
     /** This method gets called whenever elements are added to the [KObservableMutableList] */
-    fun onAdd(aMutableList: KObservableMutableList<E>, anAddedList: Collection<E>) {
+    fun onAdd(aMutableList: KObservableMutableList<E>, aStartIndex: Int, anAddedList: Collection<E>) {
         //Can be overridden
     }
 
