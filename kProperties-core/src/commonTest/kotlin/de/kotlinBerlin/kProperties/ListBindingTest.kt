@@ -6,7 +6,6 @@ import de.kotlinBerlin.kProperties.collection.observableMutableList
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
-import kotlin.test.fail
 
 class ListBindingTest {
 
@@ -38,10 +37,14 @@ class ListBindingTest {
 
     @Test
     fun testBidirectionalBinding() {
+        println("TEST")
         val t = observableMutableList<String>()
-        val t1 = observableMutableList<Int>()
+        val t1 = observableMutableList<Long>()
 
-        bindContentBidirectional(t, t1, Int::toString, String::toInt)
+        bindContentBidirectional(t, t1, Long::toString, String::toLong)
+
+        println(t)
+        println(t1)
 
         t.add("1")
 
@@ -53,6 +56,7 @@ class ListBindingTest {
 
         t.remove("2")
 
+
         assertFalse { t1.contains(2) }
 
         t1.remove(1)
@@ -61,14 +65,15 @@ class ListBindingTest {
 
         t.add("1")
 
-        assertTrue { t1.first() == 1 }
+        assertTrue { t1.first() == 1L }
 
         t.add(0, "2")
 
-        assertTrue { t1.first() == 2 }
+        assertTrue { t1.first() == 2L }
 
         t[0] = "3"
 
-        assertTrue { t1.first() == 3 }
+        assertTrue { t1.first() == 3L }
+        println("TEST")
     }
 }

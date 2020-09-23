@@ -12,7 +12,7 @@ import javafx.beans.InvalidationListener
 import javafx.beans.WeakInvalidationListener
 import javafx.beans.binding.ObjectBinding
 import javafx.beans.property.Property
-changes^1import javafx.beans.property.ReadOnlyProperty
+import javafx.beans.property.ReadOnlyProperty
 import javafx.beans.value.ChangeListener
 import javafx.beans.value.WeakChangeListener
 
